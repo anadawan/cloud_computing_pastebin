@@ -1,21 +1,12 @@
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
 import React from "react";
-import SBUnlog from "./components/sidebar_unlogged/sidebar"
-import SBLog from "./components/sidebar_logged/sidebar"
-
+import Sidebar from "./components/sidebar/sidebar"
 class App extends React.Component {
   render() {
-    if (!this.context.token) {
-      return (
-        <SBUnlog />
-      )
-    }
-    else {
-      return (
-        <SBLog />
-      )
-    }
+    return (
+      <Sidebar />
+    )
   }
 }
 
