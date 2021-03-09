@@ -13,14 +13,20 @@ import {
 } from "react-router-dom";
 import MainPage from "./components/index"
 import LoginPage from "./components/login/login"
+import RegisterPage from "./components/register/register"
+import NotFoundPage from "./components/common/404"
 class App extends Component {
   render() {
     return (
       <Router>
         <div className={"app"}>
           <Sidebar />
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/login" component={LoginPage} />
+          <Switch>
+            <Route exact path="/" component={MainPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
         </div>
       </Router>
     );
