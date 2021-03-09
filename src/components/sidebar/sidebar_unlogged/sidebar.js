@@ -21,19 +21,29 @@ class SBUnlog extends Component {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        <MenuItem icon={<Icons.FaStickyNote />}>Pastebean</MenuItem>
+                        <Menu iconShape="round">
+                            <MenuItem icon={<Icons.FaStickyNote />}>Pastebean</MenuItem>
+                        </Menu>
                     </div>
                 </SidebarHeader>
                 <SidebarContent>
-                    <Menu iconShape="square">
+                    <Menu iconShape="round">
                         <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
                             <MenuItem>Login</MenuItem>
                             <MenuItem>Lost password</MenuItem>
                         </SubMenu>
+                        <SubMenu title="Pastes" icon={<Icons.FaRegStickyNote />}>
+                            <MenuItem>Public</MenuItem>
+                            <MenuItem>New Paste</MenuItem>
+                        </SubMenu>
+                        <SubMenu title="Help" icon={<Icons.FaHeading />}>
+                            <MenuItem>Support</MenuItem>
+                            <MenuItem>How to use</MenuItem>
+                        </SubMenu>
                     </Menu>
                 </SidebarContent>
                 <SidebarFooter>
-                    <MenuItem style={{textAlign:"center"}}>Copyright (C) Pastebean</MenuItem>
+                    <MenuItem style={{ textAlign: "center" }}>Copyright (C) Pastebean</MenuItem>
                 </SidebarFooter>
             </ProSidebar>
         );

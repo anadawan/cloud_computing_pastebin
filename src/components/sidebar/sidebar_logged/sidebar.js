@@ -21,16 +21,26 @@ class SBLog extends Component {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        <Menu iconShape="square">
+                        <Menu iconShape="round">
                             <MenuItem icon={<Icons.FaStickyNote />}>Pastebean</MenuItem>
                         </Menu>
                     </div>
                 </SidebarHeader>
                 <SidebarContent>
-                    <Menu iconShape="square">
+                    <Menu iconShape="round">
                         <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
                             <MenuItem>Login</MenuItem>
                             <MenuItem>Lost password</MenuItem>
+                            <MenuItem>Account Settings</MenuItem>
+                        </SubMenu>
+                        <SubMenu title="Pastes" icon={<Icons.FaRegStickyNote />}>
+                            <MenuItem>Public</MenuItem>
+                            <MenuItem>New Paste</MenuItem>
+                            <MenuItem>My Pastes</MenuItem>
+                        </SubMenu>
+                        <SubMenu title="Help" icon={<Icons.FaHeading />}>
+                            <MenuItem>Support</MenuItem>
+                            <MenuItem>How to use</MenuItem>
                         </SubMenu>
                     </Menu>
                 </SidebarContent>
@@ -47,7 +57,7 @@ class SBLog extends Component {
                             whiteSpace: 'nowrap'
                         }}
                     >
-                        <MenuItem style={{ textAlign: "center"  }}>Copyright (C) Pastebean</MenuItem>
+                        <MenuItem style={{ textAlign: "center" }}>Copyright (C) Pastebean</MenuItem>
                     </div>
                 </SidebarFooter>
             </ProSidebar>
