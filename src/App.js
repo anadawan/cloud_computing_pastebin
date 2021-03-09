@@ -1,15 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarFooter } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import React from "react";
-import * as Icons from "react-icons/fa";
 import SBUnlog from "./components/sidebar_unlogged/sidebar"
+import SBLog from "./components/sidebar_logged/sidebar"
+
 class App extends React.Component {
   render() {
-    return (
-      <SBUnlog />
+    if (!this.context.token) {
+      return (
+        <SBUnlog />
       )
+    }
+    else {
+      return (
+        <SBLog />
+      )
+    }
   }
 }
 

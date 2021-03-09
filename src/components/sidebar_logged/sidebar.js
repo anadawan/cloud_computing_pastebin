@@ -3,12 +3,12 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import React, { Component } from 'react';
 import * as Icons from "react-icons/fa";
 
-class SBUnlog extends Component {
+class SBLog extends Component {
     render() {
         return (
             <ProSidebar>
                 <Menu iconShape="square">
-                    <MenuItem icon={<Icons.FaGem />}>Home</MenuItem>
+                    <MenuItem icon={<Icons.FaGem />}>Logged</MenuItem>
                     <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
                         <MenuItem>Login</MenuItem>
                         <MenuItem>Lost password</MenuItem>
@@ -22,4 +22,4 @@ class SBUnlog extends Component {
 }
 
 
-export default SBUnlog;
+export default SBLog;
