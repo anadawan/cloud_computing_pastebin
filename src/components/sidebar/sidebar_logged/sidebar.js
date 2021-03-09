@@ -47,7 +47,7 @@ class SBLog extends Component {
                             whiteSpace: 'nowrap'
                         }}
                     >
-                        <MenuItem style={{ textAlign: "center" }}>Copyright (C) Pastebean</MenuItem>
+                        <MenuItem style={{ textAlign: "center"  }}>Copyright (C) Pastebean</MenuItem>
                     </div>
                 </SidebarFooter>
             </ProSidebar>
