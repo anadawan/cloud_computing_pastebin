@@ -21,9 +21,7 @@ class SBUnlog extends Component {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        <Menu iconShape="square">
-                            <MenuItem icon={<Icons.FaStickyNote />}>Pastebin</MenuItem>
-                        </Menu>
+                        <MenuItem icon={<Icons.FaStickyNote />}>Pastebean</MenuItem>
                     </div>
                 </SidebarHeader>
                 <SidebarContent>
@@ -34,22 +32,8 @@ class SBUnlog extends Component {
                         </SubMenu>
                     </Menu>
                 </SidebarContent>
-                <SidebarFooter style={{ textAlign: 'center' }}>
-                    <div
-                        className="sidebar-btn-wrapper"
-                        style={{
-                            padding: '20px 24px',
-                        }}
-                    >
-                        <a
-                            href="https://github.com/azouaoui-med/react-pro-sidebar"
-                            target="_blank"
-                            className="sidebar-btn"
-                            rel="noopener noreferrer"
-                        >
-                            <span></span>
-                        </a>
-                    </div>
+                <SidebarFooter>
+                    <MenuItem style={{textAlign:"center"}}>Copyright (C) Pastebean</MenuItem>
                 </SidebarFooter>
             </ProSidebar>
         );

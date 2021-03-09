@@ -22,7 +22,7 @@ class SBLog extends Component {
                         }}
                     >
                         <Menu iconShape="square">
-                            <MenuItem icon={<Icons.FaStickyNote />}>Pastebin</MenuItem>
+                            <MenuItem icon={<Icons.FaStickyNote />}>Pastebean</MenuItem>
                         </Menu>
                     </div>
                 </SidebarHeader>
@@ -35,6 +35,20 @@ class SBLog extends Component {
                     </Menu>
                 </SidebarContent>
                 <SidebarFooter>
+                    <div
+                        style={{
+                            padding: '24px',
+                            textTransform: 'uppercase',
+                            fontWeight: 'bold',
+                            fontSize: 14,
+                            letterSpacing: '1px',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
+                        }}
+                    >
+                        <MenuItem style={{ textAlign: "center" }}>Copyright (C) Pastebean</MenuItem>
+                    </div>
                 </SidebarFooter>
             </ProSidebar>
         );
