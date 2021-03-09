@@ -5,7 +5,9 @@ import React, { Component } from 'react';
 import * as Icons from "react-icons/fa";
 
 class SBUnlog extends Component {
+    home = () => { window.location.replace("/") }
     login = () => { window.location.replace("/login") }
+    register = () => { window.location.replace("/register") }
     lostpassword = () => { window.location.replace("/lostpassword") }
     render() {
         return (
@@ -24,13 +26,14 @@ class SBUnlog extends Component {
                         }}
                     >
                         <Menu iconShape="round">
-                            <MenuItem icon={<Icons.FaStickyNote />}>Pastebean</MenuItem>
+                            <MenuItem onClick={this.home} icon={<Icons.FaStickyNote />}>Pastebean</MenuItem>
                         </Menu>
                     </div>
                 </SidebarHeader>
                 <SidebarContent>
                     <Menu iconShape="round">
                         <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
+                            <MenuItem onClick={this.register}>Register</MenuItem>
                             <MenuItem onClick={this.login}>Login</MenuItem>
                             <MenuItem onClick={this.lostpassword}>Lost password</MenuItem>
                         </SubMenu>

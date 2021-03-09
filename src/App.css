@@ -1,6 +1,8 @@
-
+.body {
+}
 #root {
   height: 100%;
+  background: "#363636";
 }
 
 .app {
