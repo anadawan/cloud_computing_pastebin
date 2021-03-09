@@ -1,12 +1,26 @@
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
-import React from "react";
-import Sidebar from "./components/sidebar/sidebar"
-class App extends React.Component {
+import Sidebar from "./components/common/sidebar/sidebar"
+import React, { Component } from "react";
+import Grid from '@material-ui/core/Grid';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
+} from "react-router-dom";
+import MainPage from "./components/index"
+class App extends Component {
   render() {
     return (
-      <Sidebar />
-    )
+      <Router>
+        <div className={`app`}>
+          <Sidebar />
+          <Route exact path="/" component={MainPage} />
+        </div>
+      </Router>
+    );
   }
 }
 

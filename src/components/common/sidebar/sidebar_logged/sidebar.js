@@ -1,14 +1,10 @@
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarFooter, SidebarContent, SidebarHeader } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import "../../../styles/sidebar.css"
 import React, { Component } from 'react';
 import * as Icons from "react-icons/fa";
-import { Redirect } from 'react-router-dom'
+import "../../../../styles/sidebar.css";
 
-
-class SBUnlog extends Component {
-    login = () => { window.location.replace("/login") }
-    lostpassword = () => { window.location.replace("/lostpassword") }
+class SBLog extends Component {
     render() {
         return (
             <ProSidebar>
@@ -33,12 +29,14 @@ class SBUnlog extends Component {
                 <SidebarContent>
                     <Menu iconShape="round">
                         <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
-                            <MenuItem onClick={this.login}>Login</MenuItem>
-                            <MenuItem onClick={this.lostpassword}>Lost password</MenuItem>
+                            <MenuItem >Login</MenuItem>
+                            <MenuItem>Lost password</MenuItem>
+                            <MenuItem>Account Settings</MenuItem>
                         </SubMenu>
                         <SubMenu title="Pastes" icon={<Icons.FaRegStickyNote />}>
                             <MenuItem>Public</MenuItem>
                             <MenuItem>New Paste</MenuItem>
+                            <MenuItem>My Pastes</MenuItem>
                         </SubMenu>
                         <SubMenu title="Help" icon={<Icons.FaHeading />}>
                             <MenuItem>Support</MenuItem>
@@ -47,7 +45,20 @@ class SBUnlog extends Component {
                     </Menu>
                 </SidebarContent>
                 <SidebarFooter>
-                    <MenuItem style={{ textAlign: "center" }}>Copyright (C) Pastebean</MenuItem>
+                    <div
+                        style={{
+                            padding: '24px',
+                            textTransform: 'uppercase',
+                            fontWeight: 'bold',
+                            fontSize: 14,
+                            letterSpacing: '1px',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
+                        }}
+                    >
+                        <MenuItem style={{ textAlign: "center" }}>Copyright (C) Pastebean</MenuItem>
+                    </div>
                 </SidebarFooter>
             </ProSidebar>
         );
@@ -55,4 +66,4 @@ class SBUnlog extends Component {
 }
 
 
-export default SBUnlog;
+export default SBLog;
