@@ -2,7 +2,7 @@ import { ProSidebar, Menu, MenuItem, SubMenu, SidebarFooter, SidebarContent, Sid
 import 'react-pro-sidebar/dist/css/styles.css';
 import React, { Component } from 'react';
 import * as Icons from "react-icons/fa";
-import "../../../styles/sidebar.css"
+import "../../../styles/sidebar.css";
 
 class SBLog extends Component {
     render() {
@@ -29,7 +29,7 @@ class SBLog extends Component {
                 <SidebarContent>
                     <Menu iconShape="round">
                         <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
-                            <MenuItem>Login</MenuItem>
+                            <MenuItem >Login</MenuItem>
                             <MenuItem>Lost password</MenuItem>
                             <MenuItem>Account Settings</MenuItem>
                         </SubMenu>

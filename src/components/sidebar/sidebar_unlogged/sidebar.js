@@ -3,8 +3,12 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import "../../../styles/sidebar.css"
 import React, { Component } from 'react';
 import * as Icons from "react-icons/fa";
+import { Redirect } from 'react-router-dom'
+
 
 class SBUnlog extends Component {
+    login = () => { window.location.replace("/login") }
+    lostpassword = () => { window.location.replace("/lostpassword") }
     render() {
         return (
             <ProSidebar>
@@ -29,8 +33,8 @@ class SBUnlog extends Component {
                 <SidebarContent>
                     <Menu iconShape="round">
                         <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
-                            <MenuItem>Login</MenuItem>
-                            <MenuItem>Lost password</MenuItem>
+                            <MenuItem onClick={this.login}>Login</MenuItem>
+                            <MenuItem onClick={this.lostpassword}>Lost password</MenuItem>
                         </SubMenu>
                         <SubMenu title="Pastes" icon={<Icons.FaRegStickyNote />}>
                             <MenuItem>Public</MenuItem>
