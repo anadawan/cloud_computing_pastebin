@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import checkToken from "../token/checkToken";
 class Sidebar extends Component {
     render() {
-        if (checkToken()) {
+        if (checkToken() === false) {
             return (
                 <SBUnlog />
             )
