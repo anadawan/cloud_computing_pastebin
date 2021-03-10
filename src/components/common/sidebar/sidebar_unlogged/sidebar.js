@@ -3,12 +3,9 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import "../../../../styles/sidebar.css"
 import React, { Component } from 'react';
 import * as Icons from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 class SBUnlog extends Component {
-    home = () => { window.location.replace("/") }
-    login = () => { window.location.replace("/login") }
-    register = () => { window.location.replace("/register") }
-    lostpassword = () => { window.location.replace("/lostpassword") }
     render() {
         return (
             <ProSidebar>
@@ -26,24 +23,24 @@ class SBUnlog extends Component {
                         }}
                     >
                         <Menu iconShape="round">
-                            <MenuItem onClick={this.home} icon={<Icons.FaStickyNote />}>Pastebean</MenuItem>
+                            <MenuItem icon={<Icons.FaStickyNote />}>Pastebean<Link to="/" /></MenuItem>
                         </Menu>
                     </div>
                 </SidebarHeader>
                 <SidebarContent>
                     <Menu iconShape="round">
                         <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
-                            <MenuItem onClick={this.register}>Register</MenuItem>
-                            <MenuItem onClick={this.login}>Login</MenuItem>
-                            <MenuItem onClick={this.lostpassword}>Lost password</MenuItem>
+                            <MenuItem>Register<Link to="/register" /></MenuItem>
+                            <MenuItem>Login<Link to="/login" /></MenuItem>
+                            <MenuItem>Lost password<Link to="/lostpwd" /></MenuItem>
                         </SubMenu>
                         <SubMenu title="Pastes" icon={<Icons.FaRegStickyNote />}>
-                            <MenuItem>Public</MenuItem>
-                            <MenuItem>New Paste</MenuItem>
+                            <MenuItem>Public<Link to="/paste/public" /></MenuItem>
+                            <MenuItem>New Paste<Link to="/paste/create" /></MenuItem>
                         </SubMenu>
                         <SubMenu title="Help" icon={<Icons.FaHeading />}>
-                            <MenuItem>Support</MenuItem>
-                            <MenuItem>How to use</MenuItem>
+                            <MenuItem>Support<Link to="/support" /></MenuItem>
+                            <MenuItem>How to use<Link to="/help" /></MenuItem>
                         </SubMenu>
                     </Menu>
                 </SidebarContent>

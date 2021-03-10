@@ -3,6 +3,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import React, { Component } from 'react';
 import * as Icons from "react-icons/fa";
 import "../../../../styles/sidebar.css";
+import { Link } from "react-router-dom";
 
 class SBLog extends Component {
     render() {
@@ -22,25 +23,24 @@ class SBLog extends Component {
                         }}
                     >
                         <Menu iconShape="round">
-                            <MenuItem icon={<Icons.FaStickyNote />}>Pastebean</MenuItem>
+                            <MenuItem icon={<Icons.FaStickyNote />}>Pastebean<Link to="/" /></MenuItem>
                         </Menu>
                     </div>
                 </SidebarHeader>
                 <SidebarContent>
                     <Menu iconShape="round">
                         <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
-                            <MenuItem >Login</MenuItem>
-                            <MenuItem>Lost password</MenuItem>
-                            <MenuItem>Account Settings</MenuItem>
+                            <MenuItem>Account Settings<Link to="/register" /></MenuItem>
+                            <MenuItem>My Pastes<Link to="/pastes/my" /></MenuItem>
                         </SubMenu>
                         <SubMenu title="Pastes" icon={<Icons.FaRegStickyNote />}>
-                            <MenuItem>Public</MenuItem>
-                            <MenuItem>New Paste</MenuItem>
-                            <MenuItem>My Pastes</MenuItem>
+                            <MenuItem>Public<Link to="/pastes/public" /></MenuItem>
+                            <MenuItem>New Paste<Link to="/pastes/new" /></MenuItem>
+                            <MenuItem>My Paste<Link to="/pastes/my" /></MenuItem>
                         </SubMenu>
                         <SubMenu title="Help" icon={<Icons.FaHeading />}>
-                            <MenuItem>Support</MenuItem>
-                            <MenuItem>How to use</MenuItem>
+                            <MenuItem>Support<Link to="/support" /></MenuItem>
+                            <MenuItem>How to use<Link to="/help" /></MenuItem>
                         </SubMenu>
                     </Menu>
                 </SidebarContent>

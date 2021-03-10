@@ -1,20 +1,24 @@
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
-import Sidebar from "./components/common/sidebar/sidebar"
 import React, { Component } from "react";
-import Grid from '@material-ui/core/Grid';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Link,
-  Redirect
+  Switch
 } from "react-router-dom";
+
+// Main page
 import MainPage from "./components/index"
-import LoginPage from "./components/login/login"
-import RegisterPage from "./components/register/register"
+
+// Accounts
+import LoginPage from "./components/account/login"
+import LostPassword from "./components/account/lost_password"
+import RegisterPage from "./components/account/register"
+
+// Common
 import NotFoundPage from "./components/common/404"
+import Sidebar from "./components/common/sidebar/sidebar"
 class App extends Component {
   render() {
     return (
@@ -25,6 +29,7 @@ class App extends Component {
             <Route exact path="/" component={MainPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/lostpwd" component={LostPassword} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>

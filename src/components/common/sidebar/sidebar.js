@@ -2,10 +2,10 @@
 import SBUnlog from "./sidebar_unlogged/sidebar"
 import SBLog from "./sidebar_logged/sidebar"
 import React, { Component } from 'react';
-
+import checkToken from "../token/checkToken";
 class Sidebar extends Component {
     render() {
-        if (!this.context.token) {
+        if (checkToken()) {
             return (
                 <SBUnlog />
             )

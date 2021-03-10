@@ -13,6 +13,7 @@
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
+    "react-native": "^0.63.4",
     "react-pro-sidebar": "^0.6.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -22,6 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm run build && aws s3 sync build/ s3://pastebean",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

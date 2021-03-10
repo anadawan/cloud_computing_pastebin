@@ -1,9 +1,5 @@
 /*index.jsx*/
-import { borderRadius } from "@material-ui/system";
 import React from "react";
-import Button from "@material-ui/core/Button"
-import { Checkbox } from '@material-ui/core';
-import { FormControlLabel } from '@material-ui/core';
 import { FormLabel } from '@material-ui/core';
 
 const LoginPage = () => {
