@@ -11,8 +11,6 @@ const HelpPage = () => {
             margin: "0 auto",
             padding: "50px"
         }}>
-            <h1>Test</h1>
-            <br />
             <Divider />
             <br />
             <h3>Help :</h3>
