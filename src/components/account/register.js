@@ -9,6 +9,9 @@ const RegisterPage = () => {
             margin: "0 auto",
             padding: "40px"
         }}>
+        <br />
+        <h3>Register :</h3>
+        <Divider />
             <form>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example1">Email address  </label>
