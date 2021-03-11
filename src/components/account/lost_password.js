@@ -11,7 +11,7 @@ const LostPassword = () => {
             padding: "40px"
         }}>
             <br />
-            <h3>Lost Password</h3>
+            <h3>Lost Password ❓</h3>
             <Divider />
             <br />
             <form>
