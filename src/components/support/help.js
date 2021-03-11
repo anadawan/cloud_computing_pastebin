@@ -32,10 +32,13 @@ const HelpPage = () => {
                 <u>- Paste options :</u><br />
                 <div style={{ "padding-left": "5em" }}>
                     There is several options you can use for pastes :<br />
-                    - <u>password</u> 🔏 : Password locking the Paste<br />
+
+                    <div style={{ "padding-left": "5em" }}>
+                        - <u>password</u> 🔏 : Password locking the Paste<br />
                     - <u>expiration</u>⏳ : Setting expiration date for the Paste<br />
                     - <u>encryption</u> 🔐: Encrypt the Paste<br />
                     - <u>acl</u> 👨👩: Accreditation list for different users to access Paste<br />
+                    </div>
                 </div>
             </div>
         </div>
