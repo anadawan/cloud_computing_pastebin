@@ -11,7 +11,6 @@ const HelpPage = () => {
             margin: "0 auto",
             padding: "50px"
         }}>
-            <Divider />
             <br />
             <h3>Help :</h3>
             <Divider />
