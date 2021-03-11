@@ -13,6 +13,7 @@ const RegisterPage = () => {
             <br />
             <h3>Register :</h3>
             <Divider />
+            <br />
             <form>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example1">Email address  </label>

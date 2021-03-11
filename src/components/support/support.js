@@ -13,9 +13,10 @@ const LoginPage = () => {
             margin: "0 auto",
             padding: "40px"
         }}>
-        <br />
-        <h3>Support :</h3>
-        <Divider />
+            <br />
+            <h3>Support :</h3>
+            <Divider />
+            <br />
             <form>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example1">Your email address  </label>
