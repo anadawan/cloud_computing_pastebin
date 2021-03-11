@@ -11,7 +11,7 @@ const MainPage = () => {
             padding: "50px"
         }}>
             <br />
-            <h3>Help</h3>
+            <h3>Welcome to Pastebean !</h3>
             <Divider />
         </div>
     );
