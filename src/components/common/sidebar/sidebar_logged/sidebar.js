@@ -31,12 +31,12 @@ class SBLog extends Component {
                     <Menu iconShape="round">
                         <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
                             <MenuItem>Account Settings<Link to="/register" /></MenuItem>
-                            <MenuItem>My Pastes<Link to="/pastes/my" /></MenuItem>
+                            <MenuItem>My Pastes<Link to="/paste/my" /></MenuItem>
                         </SubMenu>
                         <SubMenu title="Pastes" icon={<Icons.FaRegStickyNote />}>
-                            <MenuItem>Public<Link to="/pastes/public" /></MenuItem>
-                            <MenuItem>New Paste<Link to="/pastes/new" /></MenuItem>
-                            <MenuItem>My Paste<Link to="/pastes/my" /></MenuItem>
+                            <MenuItem>Public<Link to="/paste/public" /></MenuItem>
+                            <MenuItem>New Paste<Link to="/paste/new" /></MenuItem>
+                            <MenuItem>My Paste<Link to="/paste/my" /></MenuItem>
                         </SubMenu>
                         <SubMenu title="Help" icon={<Icons.FaHeading />}>
                             <MenuItem>Support<Link to="/support" /></MenuItem>
