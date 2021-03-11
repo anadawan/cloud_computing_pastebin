@@ -15,13 +15,13 @@ const HelpPage = () => {
             <h3>Help</h3>
             <Divider />
             <div style={{ "padding-left": "5em" }}>
-                <u>- Without being logged in :</u><br />
+                - <u>Without being logged in :</u><br />
                 <div style={{ "padding-left": "5em" }}>
                     Select on the menu on the left <b>Pastes</b> ⇒ <b><Link to="/paste/new">New Pastes 📓</Link></b>
                 </div>
             </div>
             <div style={{ "padding-left": "5em" }}>
-                <u>- While being logged in :</u><br />
+                - <u>While being logged in :</u><br />
                 <div style={{ "padding-left": "5em" }}>
                     If not registered yet, select on the menu on the left <b><Link to="/register">Register 👤</Link></b> and then <b>register with identifiers</b><br />
                     Click <b><Link to="/login">Login</Link> 🔑</b> and then <b>login with identifiers</b><br />
@@ -29,7 +29,7 @@ const HelpPage = () => {
                 </div>
             </div>
             <div style={{ "padding-left": "5em" }}>
-                <u>- Paste options :</u><br />
+                - <u>Paste options :</u><br />
                 <div style={{ "padding-left": "5em" }}>
                     There is several options you can use for pastes :<br />
 
