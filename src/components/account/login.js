@@ -1,8 +1,6 @@
 /*index.jsx*/
 import React from "react";
-import Button from "@material-ui/core/Button"
-import { Checkbox } from '@material-ui/core';
-import { FormControlLabel } from '@material-ui/core';
+import Button from "@material-ui/core/Button";
 import { Divider } from '@material-ui/core';
 
 const LoginPage = () => {
