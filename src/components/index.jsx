@@ -1,15 +1,18 @@
 /*index.jsx*/
 import React from "react";
-//Functional Component 
+import { Divider } from '@material-ui/core';
+
+// Main page 
 const MainPage = () => {
     return (
         <div style={{
             width: "100%",
             margin: "0 auto",
-            padding: "50px" 
+            padding: "50px"
         }}>
-            <h3>Welcome to the React Router Tutorial</h3>
-            <small>Main Page</small>
+            <br />
+            <h3>Help</h3>
+            <Divider />
         </div>
     );
 };
