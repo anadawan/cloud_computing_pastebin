@@ -1,10 +1,18 @@
 /*my.js*/
 
 import { Divider } from '@material-ui/core';
+import { DataGrid } from '@material-ui/data-grid';
 
 const MyPastes = () => {
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'pasteid', headerName: 'Paste id', width: 130 },
+        { field: 'expiration', headerName: 'Expiration Date', width: 130 },
+        { field: 'password', headerName: 'Password', width: 130 },
+        { field: 'paste_link', headerName: 'Paste Link', width: 130 },
+    ];
+    const rows = [{ id: 1, pasteid: "iXiEj188jaA", expiration: "19/01/2022", password: "Yes", paste_link: "http://test/link" }];
     return (
-
         <div style={{
             width: "100%",
             margin: "0 auto",
@@ -14,7 +22,9 @@ const MyPastes = () => {
             <h3>My Pastes</h3>
             <Divider />
             <br />
-        Not implemented
+            <div style={{ height: 400, width: '100%' }}>
+                <DataGrid rows={rows} columns={columns} pageSize={5} />
+            </div>
         </div>
     );
 };
