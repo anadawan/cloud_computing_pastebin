@@ -1,12 +1,16 @@
+/* App.js */
+
+// CSS
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
-import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from "react-router-dom";
+
+// Imports
+import React from "react";
+import { Component } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 
 // Main page
 import MainPage from "./components/index"
@@ -22,13 +26,18 @@ import MyPaste from "./components/pastes/my"
 import NewPaste from "./components/pastes/new"
 import PublicPaste from "./components/pastes/public"
 
+// Support
+import SupportPage from "./components/support/support"
+import HelpPage from "./components/support/help"
+
 // Common
 import NotFoundPage from "./components/common/404"
 import Sidebar from "./components/common/sidebar/sidebar"
+
 class App extends Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <div className={"app"}>
           <Sidebar />
           <Switch>
@@ -40,10 +49,12 @@ class App extends Component {
             <Route exact path="/paste/my" component={MyPaste} />
             <Route exact path="/paste/new" component={NewPaste} />
             <Route exact path="/paste/public" component={PublicPaste} />
+            <Route exact path="/support" component={SupportPage} />
+            <Route exact path="/help" component={HelpPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

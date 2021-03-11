@@ -2,7 +2,7 @@
 import React from "react";
 import { FormLabel } from '@material-ui/core';
 
-const LoginPage = () => {
+const PageNotFound = () => {
     return (
         <div style={{
             width: "40%",
@@ -14,4 +14,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default PageNotFound;

@@ -4,15 +4,18 @@ import "../../../../styles/sidebar.css"
 import React, { Component } from 'react';
 import * as Icons from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ReactTooltip from 'react-tooltip';
+
 
 class SBUnlog extends Component {
     render() {
         return (
-            <ProSidebar>
+            <ProSidebar collapsed={true}>
+                <ReactTooltip />
                 <SidebarHeader>
                     <div
                         style={{
-                            padding: '24px',
+                            //padding: '24px', if collapsed
                             textTransform: 'uppercase',
                             fontWeight: 'bold',
                             fontSize: 14,
@@ -23,7 +26,7 @@ class SBUnlog extends Component {
                         }}
                     >
                         <Menu iconShape="round">
-                            <MenuItem icon={<Icons.FaStickyNote />}>Pastebean<Link to="/" /></MenuItem>
+                            <MenuItem data-tip="Pastebean" icon={<Icons.FaStickyNote />}>Pastebean<Link to="/" /></MenuItem>
                         </Menu>
                     </div>
                 </SidebarHeader>

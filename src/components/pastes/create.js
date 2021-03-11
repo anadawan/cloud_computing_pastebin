@@ -2,7 +2,12 @@
 
 const CreatePaste = () => {
     return (
-        <div>Not impdedelemeffrfrfhohfrfrfrfofrfrhfrfronted</div>
+        
+        <div style={{
+            width: "100%",
+            margin: "0 auto",
+            padding: "50px" 
+        }}>Not implemented</div>
     );
 };
 
