@@ -2,7 +2,7 @@
 
 const CreatePaste = () => {
     return (
-        <div>Not implemehohohonted</div>
+        <div>Not implemehohohfrfronted</div>
     );
 };
 
