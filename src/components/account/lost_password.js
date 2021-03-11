@@ -1,6 +1,7 @@
 /*index.jsx*/
 import React from "react";
 import Button from "@material-ui/core/Button"
+import { Divider } from '@material-ui/core';
 
 const LostPassword = () => {
     return (
@@ -9,6 +10,10 @@ const LostPassword = () => {
             margin: "0 auto",
             padding: "40px"
         }}>
+            <br />
+            <h3>Login</h3>
+            <Divider />
+            <br />
             <form>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example1">Email address</label>

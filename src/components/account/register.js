@@ -11,7 +11,7 @@ const RegisterPage = () => {
             padding: "40px"
         }}>
             <br />
-            <h3>Register :</h3>
+            <h3>Register</h3>
             <Divider />
             <br />
             <form>

@@ -12,7 +12,7 @@ const HelpPage = () => {
             padding: "50px"
         }}>
             <br />
-            <h3>Help :</h3>
+            <h3>Help</h3>
             <Divider />
             <div style={{ "padding-left": "5em" }}>
                 <u>- Without being logged in :</u><br />

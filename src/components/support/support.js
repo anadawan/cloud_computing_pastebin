@@ -14,7 +14,7 @@ const LoginPage = () => {
             padding: "40px"
         }}>
             <br />
-            <h3>Support :</h3>
+            <h3>Support</h3>
             <Divider />
             <br />
             <form>
