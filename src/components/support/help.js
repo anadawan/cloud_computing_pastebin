@@ -37,8 +37,8 @@ const HelpPage = () => {
                     There is several options you can use for pastes :<br />
                     - <u>password</u> 🔏 : Password locking the Paste<br />
                     - <u>expiration</u>⏳ : Setting expiration date for the Paste<br />
-                    - <u>encryption</u> 🔐: Encrypt the paste<br />
-                    - <u>acl</u> 👨👩: Accreditation list for different users to access paste<br />
+                    - <u>encryption</u> 🔐: Encrypt the Paste<br />
+                    - <u>acl</u> 👨👩: Accreditation list for different users to access Paste<br />
                 </div>
             </div>
         </div>
