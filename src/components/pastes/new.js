@@ -54,7 +54,7 @@ const NewPastes = () => {
     }
     return (
         <div style={{
-            width: "40%",
+            width: "100%",
             margin: "0 auto",
             padding: "40px"
         }}>
@@ -63,14 +63,14 @@ const NewPastes = () => {
             <Divider />
             <br />
             <form>
-                <div class="form-outline mb-4">
+                <div class="form-outline mb-4" style={{ width: "100%" }}>
                     <label class="form-label" for="form1Example1">Past title  </label>
                     <input id="paste_title" class="form-control" />
                 </div>
                 <Select id="paste_language" options={options} onChange={selectChanged}></Select>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example2">Content  </label>
-                    <textarea id="paste_code" class="form-control" style={{height:"250px"}} onChange={textChanged} onKeyDown={myKeyDown} />
+                    <textarea id="paste_code" class="form-control" style={{ height: "250px" }} onChange={textChanged} onKeyDown={myKeyDown} />
                 </div>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example2">Syntax Highlighted  </label>
