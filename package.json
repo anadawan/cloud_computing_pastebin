@@ -19,6 +19,8 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-select": "^4.2.1",
+    "react-syntax-highlighter": "^15.4.3",
     "react-tooltip": "^4.2.15",
     "web-vitals": "^1.1.0"
   },
