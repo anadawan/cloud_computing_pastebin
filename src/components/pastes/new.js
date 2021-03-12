@@ -79,7 +79,7 @@ const NewPastes = () => {
                 <Button variant="outlined" style={{
                     width: "100%",
                 }}>
-                    Login
+                    Upload paste
                 </Button>
             </form>
         </div >
