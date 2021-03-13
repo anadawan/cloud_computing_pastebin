@@ -46,7 +46,6 @@ function myKeyDown(e) {
 const NewPastes = () => {
 
     // Load values for the select
-    let value = "";
     let options_base = SyntaxHighlighter.supportedLanguages;
     let options = [];
     for (let option of options_base) {

@@ -16,7 +16,7 @@ import { Switch } from "react-router-dom";
 import MainPage from "./components/index"
 
 // Accounts
-import LoginPage from "./components/account/login"
+import LoginPage from "./components/account/login/login"
 import LostPassword from "./components/account/lost_password"
 import RegisterPage from "./components/account/register"
 
