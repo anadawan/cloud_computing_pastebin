@@ -2,9 +2,10 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import { Divider } from '@material-ui/core';
+import { Login } from 'react-cognito/src/Login.jsx'
+import PropTypes from 'prop-types';
 
 class LoginForm extends Component {
-    // Sets props values for login form.
     constructor(props) {
         super(props);
         this.state = {
@@ -14,25 +15,23 @@ class LoginForm extends Component {
         };
     }
 
-    // OnSubmit
     onSubmit = (event) => {
         event.preventDefault();
         this.props.onSubmit(this.state.username, this.state.password);
     }
 
-    // changeUsername
     changeUsername = (event) => {
-        this.setState({ username: event.target.value })
-    }
-    // changePassword
-    changePassword = (event) => {
-        this.setState({ password: event.target.value })
+        this.setState({ username: event.target.value });
     }
 
-    // componentWillUnmount
+    changePassword = (event) => {
+        this.setState({ password: event.target.value });
+    }
+
     componentWillUnmount = () => {
         this.props.clearCache();
     }
+
     render() {
         return (
             <div style={{ width: "40%", margin: "0 auto", padding: "40px" }}>
@@ -41,19 +40,29 @@ class LoginForm extends Component {
                 <Divider />
                 <br />
                 <form onSubmit={this.onSubmit}>
+                    <div>{this.props.error}</div>
+                    <div>{this.state.email}</div>
                     <div class="form-outline mb-4">
                         <label class="form-label" for="password">Email address  </label>
-                        <input type="email" id="password" class="form-control" value={this.state.username} onChange={this.changeUsername} required />
+                        <input placeholder="Username" type="email" id="password" class="form-control" value={this.state.username} onChange={this.changeUsername} required />
                     </div>
                     <div class="form-outline mb-4">
                         <label class="form-label" for="password">Password  </label>
-                        <input type="password" id="password" class="form-control" onChange={this.changePassword} required />
+                        <input placeholder="Username" type="password" id="password" class="form-control" onChange={this.changePassword} required />
                     </div>
                     <Button variant="outlined" type="submit" style={{ width: "100%" }}> Login </Button>
                 </form>
             </div >
         );
     }
+};
+
+LoginForm.propTypes = {
+    onSubmit: PropTypes.func,
+    clearCache: PropTypes.func,
+    username: PropTypes.string,
+    error: PropTypes.string,
+    email: PropTypes.string,
 };
 
 export default LoginForm;

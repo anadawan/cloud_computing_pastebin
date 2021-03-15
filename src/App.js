@@ -6,19 +6,24 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Imports
+import {
+  Login,
+} from 'react-cognito';
 import React from "react";
 import { Component } from "react";
-import { BrowserRouter } from "react-router-dom";
-import { Route } from "react-router-dom";
-import { Switch } from "react-router-dom";
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom';
 // Main page
 import MainPage from "./components/index"
 
 // Accounts
 import LoginPage from "./components/account/login/login"
 import LostPassword from "./components/account/lost_password"
-import RegisterPage from "./components/account/register"
+import RegisterPage from "./components/account/register/register"
 
 // Pastes
 import MyPaste from "./components/pastes/my"
@@ -33,15 +38,21 @@ import HelpPage from "./components/support/help"
 import NotFoundPage from "./components/common/404"
 import Sidebar from "./components/common/sidebar/sidebar"
 
+const loggedOutPage = () => (
+  <Login>
+    <LoginPage />
+  </Login>
+);
+
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div className={"app"}>
+      <div className={"app"}>
+        <Router>
           <Sidebar />
           <Switch>
             <Route exact path="/" component={MainPage} />
-            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/login" component={loggedOutPage} />
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/lostpwd" component={LostPassword} />
             <Route exact path="/paste/create" component={NewPaste} />
@@ -51,8 +62,8 @@ class App extends Component {
             <Route exact path="/help" component={HelpPage} />
             <Route component={NotFoundPage} />
           </Switch>
-        </div>
-      </BrowserRouter>
+        </Router>
+      </div>
     );
   }
 }
