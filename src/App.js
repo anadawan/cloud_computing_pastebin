@@ -4,6 +4,12 @@
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom';
 
 // Imports
 import {
@@ -11,45 +17,16 @@ import {
 } from 'react-cognito';
 import React from "react";
 import { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch
-} from 'react-router-dom';
-// Main page
-import MainPage from "./components/index"
-
-// Accounts
-import LoginPage from "./components/account/login/login"
-import LostPassword from "./components/account/lost_password"
-import RegisterPage from "./components/account/register/register"
-import ConfirmEmail from "./components/account/register/confirm_email"
-
-// Pastes
-import MyPaste from "./components/pastes/my"
-import NewPaste from "./components/pastes/new"
-import PublicPaste from "./components/pastes/public"
-
-// Support
-import SupportPage from "./components/support/support"
-import HelpPage from "./components/support/help"
-
-// Common
-import NotFoundPage from "./components/common/404"
-import Sidebar from "./components/common/sidebar/sidebar"
-
-import TokenState from "./components/common/token/tokenAvalaible"
-
-const loggedOutPage = () => (
-  <Login>
-    <LoginPage />
-  </Login>
-);
+import Dashboard from "./components/dashboard"
 
 class App extends Component {
   render() {
     return (
+      <div className={"app"}>
+        <Dashboard />
+      </div>
+    );
+    /*return (
       <div className={"app"}>
         <Router>
           <Sidebar />
@@ -68,7 +45,7 @@ class App extends Component {
           </Switch>
         </Router>
       </div>
-    );
+    );*/
   }
 }
 

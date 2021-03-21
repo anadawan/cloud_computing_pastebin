@@ -2,52 +2,123 @@
 ** Main dashboard. Used to redirect for the login phases.
 */
 
-import React, { Component } from 'react'
-import CognitoState from 'react-cognito'
+import React from 'react'
+import { EmailVerification } from 'react-cognito'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Switch
+} from 'react-router-dom';
 
-// Sidebar
-const Sidebar;
-const Sidebar_logged_in;
-const Sidebar_admin;
+import {
+    CognitoState,
+    Logout,
+    Login,
+    NewPasswordRequired,
+    Confirm,
+} from 'react-cognito';
 
-// Login
-const LoginPage;
-
-// Register
-const RegisterPage;
-const EmailConfirm;
+// Accounts
+import LoginPage from "./account/login/login"
+import LostPassword from "./account/lost_password"
+import RegisterPage from "./account/register/register"
+import ConfirmEmail from "./account/register/confirm_email"
 
 // Pastes
+import MyPaste from "./pastes/my"
+import NewPaste from "./pastes/new"
+import PublicPaste from "./pastes/public"
 
+// Support
+import SupportPage from "./support/support"
+import HelpPage from "./support/help"
+
+// Common
+import NotFoundPage from "./common/404"
+import SidebarLogged from "./common/sidebar/sidebar_logged/sidebar"
+import SidebarUnlogged from "./common/sidebar/sidebar_unlogged/sidebar"
+// Main page
+import MainPage from "./index"
+
+const loginPage = () => (
+    <Login>
+        <LoginPage />
+    </Login>
+)
+
+const emailConfirm = () => (
+    <div className={"app"}>
+        <Router>
+            <SidebarUnlogged />
+            <Confirm    >
+                <ConfirmEmail />
+            </Confirm   >
+        </Router>
+    </div>
+)
+
+const loggedInPage = (user, attributes) => (
+    <div>
+        <Router>
+            <SidebarLogged />
+            <Switch>
+                <Route exact path="/" component={MainPage} />
+                <Route exact path="/register" component={RegisterPage} />
+                <Route exact path="/lostpwd" component={LostPassword} />
+                <Route exact path="/paste/create" component={NewPaste} />
+                <Route exact path="/paste/public" component={PublicPaste} />
+                <Route exact path="/paste/my" component={MyPaste} />
+                <Route exact path="/support" component={SupportPage} />
+                <Route exact path="/help" component={HelpPage} />
+                <Route component={NotFoundPage} />
+            </Switch>
+        </Router>
+    </div>
+);
+const loggedOutPage = () => (
+    <Router>
+        <SidebarUnlogged />
+        <Switch>
+            <Route exact path="/" component={MainPage} />
+            <Route exact path="/login" component={loginPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/lostpwd" component={LostPassword} />
+            <Route exact path="/paste/create" component={NewPaste} />
+            <Route exact path="/paste/public" component={PublicPaste} />
+            <Route exact path="/support" component={SupportPage} />
+            <Route exact path="/help" component={HelpPage} />
+            <Route component={NotFoundPage} />
+        </Switch>
+    </Router>
+);
 // If logged in route to logged in page
 // If not redirect to logged_out page
-const Dashboard = ({ state, user, attributes }) => {
+const BaseDashboard = ({ state, user, attributes }) => {
     switch (state) {
-        case CognitoState.LOGGED_IN:
+        case "LOGGED_IN":
             // Route here to pages that are avalaible.
-            return loggedInPage(user, attributes);
-        case CognitoState.AUTHENTICATED:
-        case CognitoState.LOGGING_IN:
-            return (
-                <div>
-                    <img src="ajax-loader.gif" alt="" />
-                </div>
-            )
-        case CognitoState.LOGGED_OUT:
-        case CognitoState.LOGIN_FAILURE:
-            return loggedOutPage();
-        case CognitoState.NEW_PASSWORD_REQUIRED:
-            return newPasswordPage();
-        case CognitoState.EMAIL_VERIFICATION_REQUIRED:
-            return emailVerificationPage();
-        case CognitoState.CONFIRMATION_REQUIRED:
-            return confirmForm();
+            return (loggedInPage(user, attributes));
+        case "AUTHENTICATED":
+            return (null);
+        case "LOGGING_IN":
+            return (loggedOutPage());
+        case "LOGGED_OUT":
+            return (loggedOutPage());
+        case "LOGIN_FAILURE":
+            return (null);
+        case "NEW_PASSWORD_REQUIRED":
+            return (null);
+        case "EMAIL_VERIFICATION_REQUIRED":
+            console.log("verif email")
+            return (emailConfirm());
+        case "CONFIRMATION_REQUIRED":
+            console.log("conf req")
+            return (emailConfirm());
         default:
-            return (
-                <div>
-                    <p>Unrecognized cognito state</p>
-                </div>
-            );
+            return (null);
     }
 }
 

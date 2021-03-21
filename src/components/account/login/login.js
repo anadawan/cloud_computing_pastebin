@@ -29,10 +29,11 @@ class LoginForm extends Component {
     }
 
     componentWillUnmount = () => {
+        //console.log("Props : ", this.props);
         this.props.clearCache();
     }
-
     render() {
+        console.log(this)
         return (
             <div style={{ width: "40%", margin: "0 auto", padding: "40px" }}>
                 <br />
@@ -43,11 +44,11 @@ class LoginForm extends Component {
                     <div>{this.props.error}</div>
                     <div>{this.state.email}</div>
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="password">Email address  </label>
-                        <input placeholder="Username" type="email" id="password" class="form-control" value={this.state.username} onChange={this.changeUsername} required />
+                        <label class="form-label">Email address  </label>
+                        <input placeholder="Username" id="username" class="form-control" value={this.state.username} onChange={this.changeUsername} required />
                     </div>
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="password">Password  </label>
+                        <label class="form-label">Password  </label>
                         <input placeholder="Username" type="password" id="password" class="form-control" onChange={this.changePassword} required />
                     </div>
                     <Button variant="outlined" type="submit" style={{ width: "100%" }}> Login </Button>

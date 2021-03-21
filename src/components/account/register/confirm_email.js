@@ -9,29 +9,37 @@ class ConfirmEmail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: props.email,
-            username: props.username,
-            password: '',
+            error: '',
+            verificationCode: '',
         };
     }
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.onSubmit(this.state.username, this.state.password);
+        this.props.onSubmit(this.state.verificationCode)
+            .then((user) => {
+                console.log(user);
+            })
+            .catch((error) => {
+                this.setState({ error });
+            });
     }
 
-    changeUsername = (event) => {
-        this.setState({ username: event.target.value });
+    onResend = (event) => {
+        event.preventDefault();
+        this.props.onResend()
+            .then((user) => {
+                this.setState({ error: 'Code resent' });
+            })
+            .catch((error) => {
+                this.setState({ error });
+            });
+
     }
 
-    changePassword = (event) => {
-        this.setState({ password: event.target.value });
+    changeVerificationCode = (event) => {
+        this.setState({ verificationCode: event.target.value });
     }
-
-    componentWillUnmount = () => {
-        this.props.clearCache();
-    }
-
     render() {
         return (
             <div style={{ width: "40%", margin: "0 auto", padding: "40px" }}>
@@ -40,17 +48,15 @@ class ConfirmEmail extends Component {
                 <Divider />
                 <br />
                 <form onSubmit={this.onSubmit}>
-                    <div>{this.props.error}</div>
-                    <div>{this.state.email}</div>
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="password">Email address  </label>
-                        <input placeholder="Username" type="email" id="password" class="form-control" value={this.state.username} onChange={this.changeUsername} required />
-                    </div>
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="password">Password  </label>
-                        <input placeholder="Username" type="password" id="password" class="form-control" onChange={this.changePassword} required />
-                    </div>
-                    <Button variant="outlined" type="submit" style={{ width: "100%" }}> Login </Button>
+                    <div>{this.state.error}</div>
+                    <label>
+                        Verification Code
+                        <input placeholder="code" style={{ width: "100%" }} onChange={this.changeVerificationCode} required />
+                    </label>
+                    <Button type="submit" variant="outlined" type="submit" style={{ width: "100%" }}>Submit</Button>
+                    <Button type="button" variant="outlined" style={{ width: "100%" }} onClick={this.onResend}>Resend code</Button>
+                    <Button type="button" variant="outlined" style={{ width: "100%" }} onClick={this.props.onCancel}>Cancel</Button>
+
                 </form>
             </div >
         );
