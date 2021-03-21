@@ -4,18 +4,20 @@ import React from "react";
 import { Divider } from '@material-ui/core';
 
 // Main page 
-const MainPage = () => {
-    return (
-        <div style={{
-            width: "100%",
-            margin: "0 auto",
-            padding: "50px"
-        }}>
-            <br />
-            <h3>Welcome to Pastebean !</h3>
-            <Divider />
-        </div>
-    );
+class MainPage extends React.Component {
+    render() {
+        return (
+            <div style={{
+                width: "100%",
+                margin: "0 auto",
+                padding: "50px"
+            }}>
+                <br />
+                <h3>Welcome to Pastebean !</h3>
+                <Divider />
+            </div>
+        );
+    }
 };
 
 export default MainPage;

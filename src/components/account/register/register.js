@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import { Divider } from '@material-ui/core';
 import { registerUser, CognitoState } from 'react-cognito';
-import { withRouter } from "react-router"
+import { withRouter, Redirect } from "react-router"
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -49,6 +49,7 @@ class RegisterPage extends Component {
         this.setState({ email: event.target.value });
     }
     render() {
+
         return (
             <div style={{
                 width: "40%",
@@ -61,17 +62,17 @@ class RegisterPage extends Component {
                 <br />
                 <form onSubmit={this.onSubmit}>
                     <div>{this.state.error}</div>
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="form1Example1">Email address  </label>
-                        <input type="email" id="email" onChange={this.changeEmail} required class="form-control" />
+                    <div className="form-outline mb-4">
+                        <label className="form-label" >Email address  </label>
+                        <input type="email" id="email" onChange={this.changeEmail} required className="form-control" />
                     </div>
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="form1Example1">Username  </label>
-                        <input id="username" onChange={this.changeUsername} required class="form-control" />
+                    <div className="form-outline mb-4">
+                        <label className="form-label" >Username  </label>
+                        <input id="username" onChange={this.changeUsername} required className="form-control" />
                     </div>
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="form1Example1">Password  </label>
-                        <input type="password" onChange={this.changePassword} required id="password" class="form-control" />
+                    <div className="form-outline mb-4">
+                        <label className="form-label" >Password  </label>
+                        <input type="password" onChange={this.changePassword} required id="password" className="form-control" />
                     </div>
                     <Button variant="outlined" type="submit" style={{ width: "100%" }}>Register</Button>
                 </form>

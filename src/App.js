@@ -24,6 +24,7 @@ import MainPage from "./components/index"
 import LoginPage from "./components/account/login/login"
 import LostPassword from "./components/account/lost_password"
 import RegisterPage from "./components/account/register/register"
+import ConfirmEmail from "./components/account/register/confirm_email"
 
 // Pastes
 import MyPaste from "./components/pastes/my"
@@ -37,6 +38,8 @@ import HelpPage from "./components/support/help"
 // Common
 import NotFoundPage from "./components/common/404"
 import Sidebar from "./components/common/sidebar/sidebar"
+
+import TokenState from "./components/common/token/tokenAvalaible"
 
 const loggedOutPage = () => (
   <Login>
@@ -54,6 +57,7 @@ class App extends Component {
             <Route exact path="/" component={MainPage} />
             <Route exact path="/login" component={loggedOutPage} />
             <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/email/verify" component={ConfirmEmail} />
             <Route exact path="/lostpwd" component={LostPassword} />
             <Route exact path="/paste/create" component={NewPaste} />
             <Route exact path="/paste/my" component={MyPaste} />

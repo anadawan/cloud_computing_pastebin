@@ -1,7 +1,9 @@
-import React from 'react';
- 
-function tokenAvalaible() {
-  return <h1>{greeting}</h1>;
+import React, { Component } from 'react';
+
+class TokenState extends Component {
+  render() {
+    return ("");
+  }
 }
- 
-export default tokenAvalaible;
+
+export default TokenState;
