@@ -46,22 +46,6 @@ class SBLog extends Component {
                         </SubMenu>
                     </Menu>
                 </SidebarContent>
-                <SidebarFooter>
-                    <div
-                        style={{
-                            padding: '24px',
-                            textTransform: 'uppercase',
-                            fontWeight: 'bold',
-                            fontSize: 14,
-                            letterSpacing: '1px',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap'
-                        }}
-                    >
-                        <MenuItem style={{ textAlign: "center" }}>Copyright (C) Pastebean</MenuItem>
-                    </div>
-                </SidebarFooter>
             </ProSidebar>
         );
     }

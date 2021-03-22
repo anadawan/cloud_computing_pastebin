@@ -47,9 +47,6 @@ class SBUnlog extends Component {
                         </SubMenu>
                     </Menu>
                 </SidebarContent>
-                <SidebarFooter>
-                    <MenuItem style={{ textAlign: "center" }}>Copyright (C) Pastebean</MenuItem>
-                </SidebarFooter>
             </ProSidebar>
         );
     }

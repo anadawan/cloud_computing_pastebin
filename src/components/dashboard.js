@@ -61,22 +61,20 @@ const emailConfirm = () => (
 )
 
 const loggedInPage = (user, attributes) => (
-    <div>
-        <Router>
-            <SidebarLogged />
-            <Switch>
-                <Route exact path="/" component={MainPage} />
-                <Route exact path="/register" component={RegisterPage} />
-                <Route exact path="/lostpwd" component={LostPassword} />
-                <Route exact path="/paste/create" component={NewPaste} />
-                <Route exact path="/paste/public" component={PublicPaste} />
-                <Route exact path="/paste/my" component={MyPaste} />
-                <Route exact path="/support" component={SupportPage} />
-                <Route exact path="/help" component={HelpPage} />
-                <Route component={NotFoundPage} />
-            </Switch>
-        </Router>
-    </div>
+    <Router>
+        <SidebarLogged />
+        <Switch>
+            <Route exact path="/" component={MainPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/lostpwd" component={LostPassword} />
+            <Route exact path="/paste/create" component={NewPaste} />
+            <Route exact path="/paste/public" component={PublicPaste} />
+            <Route exact path="/paste/my" component={MyPaste} />
+            <Route exact path="/support" component={SupportPage} />
+            <Route exact path="/help" component={HelpPage} />
+            <Route component={NotFoundPage} />
+        </Switch>
+    </Router>
 );
 const loggedOutPage = () => (
     <Router>
