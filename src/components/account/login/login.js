@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import { Divider } from '@material-ui/core';
-import { Login } from 'react-cognito/src/Login.jsx'
 import PropTypes from 'prop-types';
 
 class LoginForm extends Component {
@@ -33,7 +32,6 @@ class LoginForm extends Component {
         this.props.clearCache();
     }
     render() {
-        console.log(this)
         return (
             <div style={{ width: "40%", margin: "0 auto", padding: "40px" }}>
                 <br />

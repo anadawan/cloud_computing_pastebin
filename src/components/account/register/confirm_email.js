@@ -1,8 +1,7 @@
-/*index.jsx*/
+/* mail confirm .jsx*/
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import { Divider } from '@material-ui/core';
-import { Login } from 'react-cognito/src/Login.jsx'
 import PropTypes from 'prop-types';
 
 class ConfirmEmail extends Component {
@@ -42,7 +41,7 @@ class ConfirmEmail extends Component {
     }
     render() {
         return (
-            <div style={{ width: "40%", margin: "0 auto", padding: "40px" }}>
+            <div>
                 <br />
                 <h3>Mail Confirm 🔑</h3>
                 <Divider />
@@ -53,7 +52,7 @@ class ConfirmEmail extends Component {
                         Verification Code
                         <input placeholder="code" style={{ width: "100%" }} onChange={this.changeVerificationCode} required />
                     </label>
-                    <Button type="submit" variant="outlined" type="submit" style={{ width: "100%" }}>Submit</Button>
+                    <Button variant="outlined" type="submit" style={{ width: "100%" }}>Submit</Button>
                     <Button type="button" variant="outlined" style={{ width: "100%" }} onClick={this.onResend}>Resend code</Button>
                     <Button type="button" variant="outlined" style={{ width: "100%" }} onClick={this.props.onCancel}>Cancel</Button>
 

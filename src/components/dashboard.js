@@ -3,27 +3,23 @@
 */
 
 import React from 'react'
-import { EmailVerification } from 'react-cognito'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
     BrowserRouter as Router,
     Route,
-    Link,
     Switch
 } from 'react-router-dom';
 
 import {
-    CognitoState,
-    Logout,
     Login,
-    NewPasswordRequired,
     Confirm,
 } from 'react-cognito';
 
 // Accounts
+import ProfilePage from "./account/profile/profile"
 import LoginPage from "./account/login/login"
-import LostPassword from "./account/lost_password"
+import LostPassword from "./account/password/lost_password"
 import RegisterPage from "./account/register/register"
 import ConfirmEmail from "./account/register/confirm_email"
 
@@ -66,6 +62,7 @@ const loggedInPage = (user, attributes) => (
         <Switch>
             <Route exact path="/" component={MainPage} />
             <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/lostpwd" component={LostPassword} />
             <Route exact path="/paste/create" component={NewPaste} />
             <Route exact path="/paste/public" component={PublicPaste} />

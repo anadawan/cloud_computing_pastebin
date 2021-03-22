@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import { Divider } from '@material-ui/core';
-import { registerUser, CognitoState } from 'react-cognito';
-import { withRouter, Redirect } from "react-router"
+import { registerUser } from 'react-cognito';
+import { withRouter } from "react-router"
 
 class RegisterPage extends Component {
     constructor(props) {

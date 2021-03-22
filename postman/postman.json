@@ -1,0 +1,233 @@
+{
+    "info": {
+        "_postman_id": "b58b7e08-ae8d-4c09-adc6-bd75f95bade7",
+        "name": "AWS",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "checktoken",
+            "id": "78ff49d0-2b49-46aa-913d-3729350962c8",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "https:\/\/b7yutqw6pf.execute-api.us-east-1.amazonaws.com\/api\/checktoken"
+            },
+            "response": []
+        },
+        {
+            "name": "paste\/create",
+            "id": "bd35b8a4-bce2-4fbf-9453-2e0ac3128c12",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "https:\/\/b7yutqw6pf.execute-api.us-east-1.amazonaws.com\/api\/paste\/create?title=t&content=t&expiration=2021-04-15 23:32:28&pass=pass&tags=abc,abc&acl=public",
+                    "protocol": "https",
+                    "host": [
+                        "b7yutqw6pf",
+                        "execute-api",
+                        "us-east-1",
+                        "amazonaws",
+                        "com"
+                    ],
+                    "path": [
+                        "api",
+                        "paste",
+                        "create"
+                    ],
+                    "query": [
+                        {
+                            "key": "title",
+                            "value": "t"
+                        },
+                        {
+                            "key": "content",
+                            "value": "t"
+                        },
+                        {
+                            "key": "expiration",
+                            "value": "2021-04-15 23:32:28"
+                        },
+                        {
+                            "key": "pass",
+                            "value": "pass"
+                        },
+                        {
+                            "key": "tags",
+                            "value": "abc,abc"
+                        },
+                        {
+                            "key": "acl",
+                            "value": "public"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "paste\/delete",
+            "id": "8aa6388e-0608-449f-96d6-6f350e855573",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "https:\/\/b7yutqw6pf.execute-api.us-east-1.amazonaws.com\/api\/paste\/delete?hash=ee81476a296744f86413712813d71a72e4ba75182267ba71496223edefb90d96",
+                    "protocol": "https",
+                    "host": [
+                        "b7yutqw6pf",
+                        "execute-api",
+                        "us-east-1",
+                        "amazonaws",
+                        "com"
+                    ],
+                    "path": [
+                        "api",
+                        "paste",
+                        "delete"
+                    ],
+                    "query": [
+                        {
+                            "key": "hash",
+                            "value": "ee81476a296744f86413712813d71a72e4ba75182267ba71496223edefb90d96"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "paste\/update",
+            "id": "20393cb3-ef82-4f63-b6b0-bef05261b85f",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "https:\/\/b7yutqw6pf.execute-api.us-east-1.amazonaws.com\/api\/paste\/update?hash=efd7f489832c65fd9e721d64b1e7b36fdde933eb1724d4662ea3ccc8c830062a",
+                    "protocol": "https",
+                    "host": [
+                        "b7yutqw6pf",
+                        "execute-api",
+                        "us-east-1",
+                        "amazonaws",
+                        "com"
+                    ],
+                    "path": [
+                        "api",
+                        "paste",
+                        "update"
+                    ],
+                    "query": [
+                        {
+                            "key": "title",
+                            "value": "t",
+                            "disabled": true
+                        },
+                        {
+                            "key": "content",
+                            "value": "t",
+                            "disabled": true
+                        },
+                        {
+                            "key": "expiration",
+                            "value": "2021-04-15 23:32:28",
+                            "disabled": true
+                        },
+                        {
+                            "key": "pass",
+                            "value": "pass",
+                            "disabled": true
+                        },
+                        {
+                            "key": "tags",
+                            "value": "abc,abc",
+                            "disabled": true
+                        },
+                        {
+                            "key": "acl",
+                            "value": "public",
+                            "disabled": true
+                        },
+                        {
+                            "key": "hash",
+                            "value": "efd7f489832c65fd9e721d64b1e7b36fdde933eb1724d4662ea3ccc8c830062a"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "paste\/get\/public",
+            "id": "bff5def7-f6c4-430d-be85-ae06b1ad77df",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "https:\/\/b7yutqw6pf.execute-api.us-east-1.amazonaws.com\/api\/paste\/get\/public"
+            },
+            "response": []
+        },
+        {
+            "name": "paste\/get\/my",
+            "id": "000150ff-8fca-4f09-b0ce-f6dc1d02c631",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "https:\/\/b7yutqw6pf.execute-api.us-east-1.amazonaws.com\/api\/paste\/get\/my"
+            },
+            "response": []
+        },
+        {
+            "name": "paste\/get\/assigned",
+            "id": "80314187-023d-4eeb-8706-dd7efad63004",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "https:\/\/b7yutqw6pf.execute-api.us-east-1.amazonaws.com\/api\/paste\/get\/assigned"
+            },
+            "response": []
+        },
+        {
+            "name": "paste\/get\/specific",
+            "id": "3fabbee5-c4ed-43d1-ab79-07e70f727889",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "https:\/\/b7yutqw6pf.execute-api.us-east-1.amazonaws.com\/api\/paste\/get?hash=efd7f489832c65fd9e721d64b1e7b36fdde933eb1724d4662ea3ccc8c830062a",
+                    "protocol": "https",
+                    "host": [
+                        "b7yutqw6pf",
+                        "execute-api",
+                        "us-east-1",
+                        "amazonaws",
+                        "com"
+                    ],
+                    "path": [
+                        "api",
+                        "paste",
+                        "get"
+                    ],
+                    "query": [
+                        {
+                            "key": "hash",
+                            "value": "efd7f489832c65fd9e721d64b1e7b36fdde933eb1724d4662ea3ccc8c830062a"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "upload",
+            "id": "e8e74017-a26d-481c-912e-c7d4c370cbe0",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": "https:\/\/b7yutqw6pf.execute-api.us-east-1.amazonaws.com\/api\/upload"
+            },
+            "response": []
+        }
+    ]
+}

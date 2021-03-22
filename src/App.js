@@ -4,17 +4,8 @@
 import './App.css';
 import 'react-pro-sidebar/dist/css/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch
-} from 'react-router-dom';
 
 // Imports
-import {
-  Login,
-} from 'react-cognito';
 import React from "react";
 import { Component } from "react";
 import Dashboard from "./components/dashboard"
