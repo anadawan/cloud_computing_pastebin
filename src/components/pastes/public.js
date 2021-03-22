@@ -3,13 +3,18 @@
 import { Divider } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { Component } from "react"
+
 class PublicPastes extends Component {
     /*
      res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
    */
-    constructor(props, columns, rows) {
+    constructor(props, rows, columns) {
         super(props);
+        this.state = {
+            rows: [],
+            columns: []
+        }
         this.columns = [
             { field: 'id', headerName: 'ID', width: 70 },
             { field: 'pasteid', headerName: 'Paste id', width: 130 },
@@ -31,19 +36,20 @@ class PublicPastes extends Component {
         let call_resp = await fetch("https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/get/public", requestOptions);
         let call_res = await call_resp.json()
         let pastes = call_res["pastes"]
-        console.log(pastes)
         if (pastes === undefined) {
             return;
         }
         for (const paste of pastes) {
-            console.log(paste);
+            //console.log(paste);
             // id, title, expiration, password (?), //LINK ?
             this.rows.push({ id: paste["id"], pasteid: paste["id"], expiration: paste["expiration"], password: (paste["password"] !== "") ? "True" : "False", paste_link: "None Yet" })
         }
+        this.setState({ columns: this.columns })
+        this.setState({ rows: this.rows })
     }
     render() {
-        let columns = this.columns;
-        let rows = this.rows;
+        let rows = this.state.rows;
+        let columns = this.state.columns;
         return (
             <div style={{
                 width: "100%",
