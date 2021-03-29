@@ -10,7 +10,10 @@ import ReactDOM from 'react-dom';
 import SyntaxHighlight from "./components/syntax_highlight";
 import PasteContent from "./components/paste_content";
 import PasteTitle from "./components/paste_title";
-
+import PasteExpiration from "./components/paste_expiration";
+import PastePassword from "./components/paste_password";
+import PasteTags from "./components/paste_tags";
+import PastePublic from "./components/paste_public";
 class NewPastes extends React.Component {
     constructor(props) {
         super(props);
@@ -23,7 +26,6 @@ class NewPastes extends React.Component {
         document.getElementById("render_code").value = "";
         ReactDOM.render(element, document.getElementById("render_code"));
     }
-
     languageChanged = (e) => {
         // Load values and update highlighted code.
         let code = document.getElementById("paste_code");
@@ -32,7 +34,6 @@ class NewPastes extends React.Component {
         document.getElementById("render_code").value = "";
         ReactDOM.render(element, document.getElementById("render_code"));
     }
-
     tabPressed = (e) => {
         if (e.key === 'Tab') {
             e.preventDefault();
@@ -81,9 +82,13 @@ class NewPastes extends React.Component {
                         options={this.options}
                     />
                     {/* PASTE EXPIRATION */}
+                    <PasteExpiration />
                     {/* PASTE PASSWORD */}
+                    <PastePassword />
                     {/* PASTE TAGS */}
+                    <PasteTags />
                     {/* PASTE PUBLIC */}
+                    <PastePublic />
                     <Button variant="outlined" style={{
                         width: "100%"
                     }}>
