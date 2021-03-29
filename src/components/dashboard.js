@@ -64,7 +64,7 @@ const loggedInPage = (user, attributes) => (
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/lostpwd" component={LostPassword} />
-            <Route exact path="/paste/create" component={NewPaste} />
+            <Route exact path="/paste/new" component={NewPaste} />
             <Route exact path="/paste/public" component={PublicPaste} />
             <Route exact path="/paste/my" component={MyPaste} />
             <Route exact path="/support" component={SupportPage} />
@@ -81,7 +81,7 @@ const loggedOutPage = () => (
             <Route exact path="/login" component={loginPage} />
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/lostpwd" component={LostPassword} />
-            <Route exact path="/paste/create" component={NewPaste} />
+            <Route exact path="/paste/new" component={NewPaste} />
             <Route exact path="/paste/public" component={PublicPaste} />
             <Route exact path="/support" component={SupportPage} />
             <Route exact path="/help" component={HelpPage} />

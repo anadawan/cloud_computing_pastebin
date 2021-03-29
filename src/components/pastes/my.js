@@ -23,7 +23,7 @@ const MyPastes = () => {
             <Divider />
             <br />
             <div style={{ height: 400, width: '100%' }}>
-                <DataGrid rows={rows} columns={columns} pageSize={5} />
+                <DataGrid rows={rows} columns={columns} pageSize={10} />
             </div>
         </div>
     );
