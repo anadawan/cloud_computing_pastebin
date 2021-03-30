@@ -5,7 +5,6 @@ import React from "react";
 import Button from "@material-ui/core/Button"
 import { Divider } from '@material-ui/core';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import Select from 'react-select'
 import ReactDOM from 'react-dom';
 import SyntaxHighlight from "./components/syntax_highlight";
 import PasteContent from "./components/paste_content";
@@ -17,7 +16,12 @@ import PastePublic from "./components/paste_public";
 class NewPastes extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {}
     }
+    // #region Title
+    titleChange = (e) => { this.setState({ title: e.target.value }); }
+    // #endregion
+    // #region Content
     contentChanged = () => {
         // Load values and update highlighted code.
         let code = document.getElementById("paste_code");
@@ -25,14 +29,7 @@ class NewPastes extends React.Component {
 
         document.getElementById("render_code").value = "";
         ReactDOM.render(element, document.getElementById("render_code"));
-    }
-    languageChanged = (e) => {
-        // Load values and update highlighted code.
-        let code = document.getElementById("paste_code");
-        const element = <SyntaxHighlighter style={dark} language={e.value}>{code.value}</SyntaxHighlighter>;
-
-        document.getElementById("render_code").value = "";
-        ReactDOM.render(element, document.getElementById("render_code"));
+        this.setState({ content: code.value })
     }
     tabPressed = (e) => {
         if (e.key === 'Tab') {
@@ -50,6 +47,32 @@ class NewPastes extends React.Component {
                 code.selectionEnd = start + 1;
         }
     }
+    // #endregion
+    // #region Syntax
+    languageChanged = (e) => {
+        // Load values and update highlighted code.
+        let code = document.getElementById("paste_code");
+        const element = <SyntaxHighlighter style={dark} language={e.value}>{code.value}</SyntaxHighlighter>;
+
+        document.getElementById("render_code").value = "";
+        ReactDOM.render(element, document.getElementById("render_code"));
+    }
+    // #endregion  
+    // #region Expiration
+    toggleExpiration = (e) => { this.setState({ expiration: !this.state.expiration }) }
+    dateChanged = (e) => { this.setState({ date: e.target.value }); }
+    timeChanged = (e) => { this.setState({ time: e.target.value }); }
+    // #endregion    
+    // #region Password
+    togglePassword = (e) => { this.setState({ password: !this.state.password }) };
+    passwordChanged = (e) => { this.setState({ password_text: e.target.value }) };
+    // #endregion
+    // #region Tags
+    tagsChanged = (e) => { this.setState({ tags: e.target.value }) }
+    // #endregion
+    // #region Public
+    togglePublic = (e) => { this.setState({ public: e.target.value }) }
+    // #endregion
     render() {
         // Load values for the select
         let options_base = SyntaxHighlighter.supportedLanguages;
@@ -69,7 +92,9 @@ class NewPastes extends React.Component {
                 <br />
                 <form>
                     {/* TITLE */}
-                    <PasteTitle />
+                    <PasteTitle
+                        titleChanged={this.titleChanged}
+                    />
                     {/* CODE CONTENT */}
                     <PasteContent
                         options={options}
@@ -82,18 +107,32 @@ class NewPastes extends React.Component {
                         options={this.options}
                     />
                     {/* PASTE EXPIRATION */}
-                    <PasteExpiration />
+                    <PasteExpiration
+                        dateChanged={this.dateChanged}
+                        timeChanged={this.timeChanged}
+                        togglePassword={this.togglePassword}
+                        password={this.state.expiration}
+                    />
                     {/* PASTE PASSWORD */}
-                    <PastePassword />
+                    <PastePassword
+                        togglePassword={this.togglePassword}
+                        passwordChanged={this.passwordChanged}
+                        expiration={this.state.expiration}
+                    />
                     {/* PASTE TAGS */}
-                    <PasteTags />
+                    <PasteTags
+                        tagsChanged={this.tagsChanged}
+                    />
                     {/* PASTE PUBLIC */}
-                    <PastePublic />
+                    <PastePublic
+                        togglePublic={this.togglePublic}
+                        public={this.state.public}
+                    />
                     <Button variant="outlined" style={{
                         width: "100%"
                     }}>
                         Upload paste
-                </Button>
+                    </Button>
                 </form>
             </div >
         );

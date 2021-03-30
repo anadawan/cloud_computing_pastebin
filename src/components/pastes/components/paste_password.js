@@ -8,7 +8,7 @@ export default class PastePassword extends React.Component {
     render() {
         return (
             <div class="form-outline mb-4">
-                <TextField type="password" />
+                <TextField type="password" style={{ width: '60%' }} />
                 <FormControlLabel
                     control={
                         <Checkbox
