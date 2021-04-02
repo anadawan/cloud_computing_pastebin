@@ -57,7 +57,7 @@ class PublicPastes extends Component {
                 padding: "50px"
             }}>
                 <br />
-                <h3>My Pastes</h3>
+                <h3>Public Pastes</h3>
                 <Divider />
                 <br />
                 <div style={{ height: 400, width: '100%' }}>
