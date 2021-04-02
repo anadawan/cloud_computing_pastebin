@@ -16,10 +16,58 @@ import PastePublic from "./components/paste_public";
 class NewPastes extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            expiration: false,
+            password: false,
+            public: false,
+            language: "",
+            expiration_date: "",
+            expiration_time: "",
+            password_text: "",
+            content: "",
+            title: "",
+            tags: ""
+        }
     }
+    // #region ButtonSubmit
+    onButtonClick = (e) => {
+        /*
+            https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/create
+            ?title=t&content=t&expiration=2021-04-15 23:32:28&pass=pass&tags=abc,abc&acl=public 
+        */
+        console.log(this.state);
+        let requestType = "POST";
+        let requestUrl = "https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/create";
+        let requestOptions = {
+            method: 'POST'
+        };
+
+        requestUrl += "?";
+        requestUrl += "title=" + this.state.title + "&";
+        if (this.state.password)
+            requestUrl += "pass=" + this.state.password_text + "&";
+        else
+            requestUrl += "pass=&";
+        requestUrl += "content=" + this.state.content + "&";
+        if (this.state.expiration)
+            requestUrl += "expiration=" + this.state.expiration_date + " " + this.state.expiration_time + ":00" + "&";
+        else
+            requestUrl += "expiration=&";
+        if (this.state.public)
+            requestUrl += "acl=public&"
+        else
+            requestUrl += "acl=&"
+        requestUrl += "tags=" + this.state.tags + "&";
+        requestUrl += "lang=" + this.state.language;
+        fetch(requestUrl, requestOptions).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+    // #endregion
     // #region Title
-    titleChange = (e) => { this.setState({ title: e.target.value }); }
+    titleChanged = (e) => { this.setState({ title: e.target.value }); }
     // #endregion
     // #region Content
     contentChanged = () => {
@@ -56,22 +104,23 @@ class NewPastes extends React.Component {
 
         document.getElementById("render_code").value = "";
         ReactDOM.render(element, document.getElementById("render_code"));
+        this.setState({ language: e.value })
     }
     // #endregion  
     // #region Expiration
-    toggleExpiration = (e) => { this.setState({ expiration: !this.state.expiration }) }
-    dateChanged = (e) => { this.setState({ date: e.target.value }); }
-    timeChanged = (e) => { this.setState({ time: e.target.value }); }
+    toggleExpiration = (e) => { this.setState({ expiration: !this.state.expiration }); }
+    dateChanged = (e) => { this.setState({ expiration_date: e.target.value }); console.log(e.target.value); }
+    timeChanged = (e) => { this.setState({ expiration_time: e.target.value }); }
     // #endregion    
     // #region Password
-    togglePassword = (e) => { this.setState({ password: !this.state.password }) };
+    togglePassword = () => { this.setState({ password: !this.state.password }) };
     passwordChanged = (e) => { this.setState({ password_text: e.target.value }) };
     // #endregion
     // #region Tags
-    tagsChanged = (e) => { this.setState({ tags: e.target.value }) }
+    tagsChanged = (e) => { this.setState({ tags: e.target.value }); }
     // #endregion
     // #region Public
-    togglePublic = (e) => { this.setState({ public: e.target.value }) }
+    togglePublic = () => { this.setState({ public: !this.state.public }) }
     // #endregion
     render() {
         // Load values for the select
@@ -110,14 +159,14 @@ class NewPastes extends React.Component {
                     <PasteExpiration
                         dateChanged={this.dateChanged}
                         timeChanged={this.timeChanged}
-                        togglePassword={this.togglePassword}
-                        password={this.state.expiration}
+                        toggleExpiration={this.toggleExpiration}
+                        expiration={this.state.expiration}
                     />
                     {/* PASTE PASSWORD */}
                     <PastePassword
                         togglePassword={this.togglePassword}
                         passwordChanged={this.passwordChanged}
-                        expiration={this.state.expiration}
+                        password={this.state.password}
                     />
                     {/* PASTE TAGS */}
                     <PasteTags
@@ -130,7 +179,9 @@ class NewPastes extends React.Component {
                     />
                     <Button variant="outlined" style={{
                         width: "100%"
-                    }}>
+                    }}
+                        onClick={this.onButtonClick}
+                    >
                         Upload paste
                     </Button>
                 </form>

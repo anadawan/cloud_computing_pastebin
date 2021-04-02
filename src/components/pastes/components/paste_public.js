@@ -10,9 +10,11 @@ export default class PastePublic extends React.Component {
                     control={
                         <Checkbox
                             color="primary"
+                            onChange={this.props.togglePublic}
+                            checked={this.props.public}
                         />
                     }
-                    label="Password"    
+                    label="Set this paste public"
                 />
             </div>
         );
