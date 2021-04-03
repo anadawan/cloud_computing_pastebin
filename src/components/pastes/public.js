@@ -3,7 +3,8 @@
 import { Divider } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { Component } from "react"
-
+import { Link } from "react-dom"
+import Button from "@material-ui/core/Button"
 class PublicPastes extends Component {
     /*
      res.header("Access-Control-Allow-Origin", "*");
@@ -20,7 +21,18 @@ class PublicPastes extends Component {
             { field: 'pasteid', headerName: 'Paste id', width: 130 },
             { field: 'expiration', headerName: 'Expiration Date', width: 130 },
             { field: 'password', headerName: 'Password', width: 130 },
-            { field: 'paste_link', headerName: 'Paste Link', width: 130 },
+            {
+                field: 'paste_link', headerName: 'Paste Link', width: 130,
+                renderCell: (params) => (
+                    <strong>
+                        <a href={params.value}>
+                            <Button>
+                                Open
+                            </Button>
+                        </a>
+                    </strong>
+                )
+            },
         ];
         this.rows = [];
     }
@@ -42,7 +54,8 @@ class PublicPastes extends Component {
         for (const paste of pastes) {
             //console.log(paste);
             // id, title, expiration, password (?), //LINK ?
-            this.rows.push({ id: paste["id"], pasteid: paste["id"], expiration: paste["expiration"], password: (paste["password"] !== "") ? "True" : "False", paste_link: "None Yet" })
+            let link = "/paste/get/" + paste["uid"];
+            this.rows.push({ id: paste["id"], pasteid: paste["id"], expiration: paste["expiration"], password: (paste["password"] !== "") ? "True" : "False", paste_link: link })
         }
         this.setState({ columns: this.columns })
         this.setState({ rows: this.rows })

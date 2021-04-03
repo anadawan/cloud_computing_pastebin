@@ -2,6 +2,7 @@
 
 import { Divider } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
+import Button from "@material-ui/core/Button"
 
 const MyPastes = () => {
     const columns = [
@@ -9,7 +10,18 @@ const MyPastes = () => {
         { field: 'pasteid', headerName: 'Paste id', width: 130 },
         { field: 'expiration', headerName: 'Expiration Date', width: 130 },
         { field: 'password', headerName: 'Password', width: 130 },
-        { field: 'paste_link', headerName: 'Paste Link', width: 130 },
+        {
+            field: 'paste_link', headerName: 'Paste Link', width: 130,
+            renderCell: (params) => (
+                <strong>
+                    <a href={params.value}>
+                        <Button>
+                            Open
+                        </Button>
+                    </a>
+                </strong>
+            )
+        },
     ];
     const rows = [{ id: 1, pasteid: "iXiEj188jaA", expiration: "19/01/2022", password: "Yes", paste_link: "http://test/link" }];
     return (

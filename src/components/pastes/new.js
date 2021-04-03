@@ -64,6 +64,7 @@ class NewPastes extends React.Component {
         }).catch((err) => {
             console.log(err);
         });
+        // TODO : Maybe redirect to paste after ?
     }
     // #endregion
     // #region Title

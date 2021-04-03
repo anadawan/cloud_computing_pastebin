@@ -27,6 +27,7 @@ import ConfirmEmail from "./account/register/confirm_email"
 import MyPaste from "./pastes/my"
 import NewPaste from "./pastes/new"
 import PublicPaste from "./pastes/public"
+import GetPaste from "./pastes/get"
 
 // Support
 import SupportPage from "./support/support"
@@ -61,10 +62,10 @@ const loggedInPage = (user, attributes) => (
         <SidebarLogged />
         <Switch>
             <Route exact path="/" component={MainPage} />
-            <Route exact path="/register" component={RegisterPage} />
-            <Route exact path="/profile" component={ProfilePage} />
+            <Route exact path="/profile" render={(props) => <ProfilePage {...props} user={user} />} />
             <Route exact path="/lostpwd" component={LostPassword} />
             <Route exact path="/paste/new" component={NewPaste} />
+            <Route path="/paste/get/:id" component={GetPaste} />
             <Route exact path="/paste/public" component={PublicPaste} />
             <Route exact path="/paste/my" component={MyPaste} />
             <Route exact path="/support" component={SupportPage} />
