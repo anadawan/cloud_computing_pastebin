@@ -5,6 +5,9 @@ import { Divider } from '@material-ui/core';
 
 // Main page 
 class MainPage extends React.Component {
+    componentDidMount() {
+        console.log(this.props)
+    }
     render() {
         return (
             <div style={{
@@ -13,7 +16,7 @@ class MainPage extends React.Component {
                 padding: "50px"
             }}>
                 <br />
-                <h3>Welcome to Pastebean toto!</h3>
+                <h3>Welcome to Pastebean !</h3>
                 <Divider />
             </div>
         );

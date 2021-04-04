@@ -14,6 +14,9 @@ import PastePassword from "./components/paste_password";
 import PasteTags from "./components/paste_tags";
 import PastePublic from "./components/paste_public";
 class NewPastes extends React.Component {
+    componentWillMount() {
+        
+    }
     getToken = () => {
         console.log(this?.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]] ?? "pas de token")
         return (this?.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]] ?? "Anonymous")
@@ -43,7 +46,7 @@ class NewPastes extends React.Component {
         let requestType = "POST";
         let requestUrl = "https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/create";
         let requestOptions = {
-            method: requestType,
+            method: 'POST',
             headers: { accesstoken: this.getToken() }
         };
 

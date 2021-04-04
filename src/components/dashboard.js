@@ -26,8 +26,9 @@ import ConfirmEmail from "./account/register/confirm_email"
 // Pastes
 import MyPaste from "./pastes/my"
 import NewPaste from "./pastes/new"
-import PublicPaste from "./pastes/public"
 import GetPaste from "./pastes/get"
+import PublicPaste from "./pastes/public"
+import EditPaste from "./pastes/edit"
 
 // Support
 import SupportPage from "./support/support"
@@ -61,13 +62,14 @@ const loggedInPage = (user, attributes) => (
     <Router>
         <SidebarLogged />
         <Switch>
-            <Route exact path="/" component={MainPage} />
-            <Route exact path="/profile" render={(props) => <ProfilePage {...props} user={user} />} />
-            <Route exact path="/lostpwd" render={(props) => <LostPassword {...props} user={user} />} />
-            <Route exact path="/paste/new" render={(props) => <NewPaste {...props} user={user} />} />
-            <Route path="/paste/get/:id" render={(props) => <GetPaste {...props} user={user} />} />
-            <Route exact path="/paste/public" render={(props) => <PublicPaste {...props} user={user} />} />
-            <Route exact path="/paste/my" render={(props) => <MyPaste {...props} user={user} />} />
+            <Route exact path="/" render={(props) => <MainPage  {...props} user={user} attributes={attributes} />} />
+            <Route exact path="/profile" render={(props) => <ProfilePage {...props} user={user} attributes={attributes} />} />
+            <Route exact path="/lostpwd" render={(props) => <LostPassword {...props} user={user} attributes={attributes} />} />
+            <Route exact path="/paste/new" render={(props) => <NewPaste {...props} user={user} attributes={attributes} />} />
+            <Route path="/paste/get/:id" render={(props) => <GetPaste {...props} user={user} attributes={attributes} />} />
+            <Route path="/paste/edit/:id" render={(props) => <EditPaste {...props} user={user} attributes={attributes} />} />
+            <Route exact path="/paste/public" render={(props) => <PublicPaste {...props} user={user} attributes={attributes} />} />
+            <Route exact path="/paste/my" render={(props) => <MyPaste {...props} user={user} attributes={attributes} />} />
             <Route exact path="/support" component={SupportPage} />
             <Route exact path="/help" component={HelpPage} />
             <Route component={NotFoundPage} />
@@ -82,7 +84,7 @@ const loggedOutPage = () => (
             <Route exact path="/login" component={loginPage} />
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/lostpwd" component={LostPassword} />
-            <Route path="/paste/get/:id" render={(props) => <GetPaste {...props}/>} />
+            <Route path="/paste/get/:id" render={(props) => <GetPaste {...props} />} />
             <Route exact path="/paste/new" component={NewPaste} />
             <Route exact path="/paste/public" component={PublicPaste} />
             <Route exact path="/support" component={SupportPage} />
@@ -109,10 +111,8 @@ const BaseDashboard = ({ state, user, attributes }) => {
         case "NEW_PASSWORD_REQUIRED":
             return (null);
         case "EMAIL_VERIFICATION_REQUIRED":
-            console.log("verif email")
             return (emailConfirm());
         case "CONFIRMATION_REQUIRED":
-            console.log("conf req")
             return (emailConfirm());
         default:
             return (null);
