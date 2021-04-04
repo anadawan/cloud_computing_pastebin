@@ -14,6 +14,10 @@ import PastePassword from "./components/paste_password";
 import PasteTags from "./components/paste_tags";
 import PastePublic from "./components/paste_public";
 class NewPastes extends React.Component {
+    getToken = () => {
+        console.log(this?.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]] ?? "pas de token")
+        return (this?.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]] ?? "Anonymous")
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -39,7 +43,8 @@ class NewPastes extends React.Component {
         let requestType = "POST";
         let requestUrl = "https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/create";
         let requestOptions = {
-            method: 'POST'
+            method: 'POST',
+            headers: { accesstoken: this.getToken() }
         };
 
         requestUrl += "?";
@@ -48,15 +53,14 @@ class NewPastes extends React.Component {
             requestUrl += "pass=" + this.state.password_text + "&";
         else
             requestUrl += "pass=&";
-        requestUrl += "content=" + this.state.content + "&";
+
+        requestUrl += "content=" + encodeURI(this.state.content) + "&";
         if (this.state.expiration)
             requestUrl += "expiration=" + this.state.expiration_date + " " + this.state.expiration_time + ":00" + "&";
-        else
-            requestUrl += "expiration=&";
         if (this.state.public)
             requestUrl += "acl=public&"
         else
-            requestUrl += "acl=&"
+            requestUrl += "acl=private&"
         requestUrl += "tags=" + this.state.tags + "&";
         requestUrl += "lang=" + this.state.language;
         fetch(requestUrl, requestOptions).then((res) => {

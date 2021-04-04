@@ -14,6 +14,10 @@ export default class GetSpecific extends React.Component {
             pwd: ""
         }
     }
+    getToken = () => {
+        console.log(this?.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]] ?? "pas de token")
+        return (this?.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]] ?? "Anonymous")
+    }
     onChange = (e) => {
         this.setState({ pwd: e.target.value });
     }
@@ -22,7 +26,7 @@ export default class GetSpecific extends React.Component {
         let url = "https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/get";
         url += "?hash=" + this.props.match.params.id;
         url += "&pass=" + this.state.pwd
-        let result = await fetch(url, { method: "POST" });
+        let result = await fetch(url, { method: "POST", headers: { accesstoken: this.getToken() } });
         let response = await result.json();
         console.log(response);
         if (response["message"] === "Invalid password.") {
@@ -41,7 +45,7 @@ export default class GetSpecific extends React.Component {
         console.log(this.props.match.params.id);
         let url = "https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/get";
         url += "?hash=" + this.props.match.params.id;
-        let result = await fetch(url, { method: "POST" });
+        let result = await fetch(url, { method: "POST", headers: { accesstoken: this.getToken() } });
         let response = await result.json();
         console.log(response);
         if (response["message"] === "Invalid password.") {

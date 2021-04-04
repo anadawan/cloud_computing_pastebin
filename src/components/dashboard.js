@@ -50,9 +50,9 @@ const emailConfirm = () => (
     <div className={"app"}>
         <Router>
             <SidebarUnlogged />
-            <Confirm    >
+            <Confirm>
                 <ConfirmEmail />
-            </Confirm   >
+            </Confirm>
         </Router>
     </div>
 )
@@ -63,11 +63,11 @@ const loggedInPage = (user, attributes) => (
         <Switch>
             <Route exact path="/" component={MainPage} />
             <Route exact path="/profile" render={(props) => <ProfilePage {...props} user={user} />} />
-            <Route exact path="/lostpwd" component={LostPassword} />
-            <Route exact path="/paste/new" component={NewPaste} />
-            <Route path="/paste/get/:id" component={GetPaste} />
-            <Route exact path="/paste/public" component={PublicPaste} />
-            <Route exact path="/paste/my" component={MyPaste} />
+            <Route exact path="/lostpwd" render={(props) => <LostPassword {...props} user={user} />} />
+            <Route exact path="/paste/new" render={(props) => <NewPaste {...props} user={user} />} />
+            <Route path="/paste/get/:id" render={(props) => <GetPaste {...props} user={user} />} />
+            <Route exact path="/paste/public" render={(props) => <PublicPaste {...props} user={user} />} />
+            <Route exact path="/paste/my" render={(props) => <MyPaste {...props} user={user} />} />
             <Route exact path="/support" component={SupportPage} />
             <Route exact path="/help" component={HelpPage} />
             <Route component={NotFoundPage} />
@@ -82,6 +82,7 @@ const loggedOutPage = () => (
             <Route exact path="/login" component={loginPage} />
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/lostpwd" component={LostPassword} />
+            <Route path="/paste/get/:id" render={(props) => <GetPaste {...props}/>} />
             <Route exact path="/paste/new" component={NewPaste} />
             <Route exact path="/paste/public" component={PublicPaste} />
             <Route exact path="/support" component={SupportPage} />

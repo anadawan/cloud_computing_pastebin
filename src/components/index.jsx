@@ -13,7 +13,7 @@ class MainPage extends React.Component {
                 padding: "50px"
             }}>
                 <br />
-                <h3>Welcome to Pastebean !</h3>
+                <h3>Welcome to Pastebean toto!</h3>
                 <Divider />
             </div>
         );

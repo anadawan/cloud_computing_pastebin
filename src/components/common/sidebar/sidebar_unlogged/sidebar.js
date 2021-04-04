@@ -39,7 +39,7 @@ class SBUnlog extends Component {
                         </SubMenu>
                         <SubMenu title="Pastes" icon={<Icons.FaRegStickyNote />}>
                             <MenuItem>Public<Link to="/paste/public" /></MenuItem>
-                            <MenuItem>New Paste<Link to="/paste/create" /></MenuItem>
+                            <MenuItem>New Paste<Link to="/paste/new" /></MenuItem>
                         </SubMenu>
                         <SubMenu title="Help" icon={<Icons.FaHeading />}>
                             <MenuItem>Support<Link to="/support" /></MenuItem>
