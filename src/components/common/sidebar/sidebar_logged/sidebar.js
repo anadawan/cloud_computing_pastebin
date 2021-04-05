@@ -1,4 +1,4 @@
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarFooter, SidebarContent, SidebarHeader } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarContent, SidebarHeader } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import React, { Component } from 'react';
 import * as Icons from "react-icons/fa";
@@ -32,7 +32,7 @@ class SBLog extends Component {
                 <SidebarContent>
                     <Menu iconShape="round">
                         <SubMenu title="Account" icon={<Icons.FaUserAlt />}>
-                            <MenuItem>Account Settings<Link to="/register" /></MenuItem>
+                            <MenuItem>Account Settings<Link to="/profile" /></MenuItem>
                             <MenuItem>My Pastes<Link to="/paste/my" /></MenuItem>
                         </SubMenu>
                         <SubMenu title="Pastes" icon={<Icons.FaRegStickyNote />}>
@@ -46,22 +46,6 @@ class SBLog extends Component {
                         </SubMenu>
                     </Menu>
                 </SidebarContent>
-                <SidebarFooter>
-                    <div
-                        style={{
-                            padding: '24px',
-                            textTransform: 'uppercase',
-                            fontWeight: 'bold',
-                            fontSize: 14,
-                            letterSpacing: '1px',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap'
-                        }}
-                    >
-                        <MenuItem style={{ textAlign: "center" }}>Copyright (C) Pastebean</MenuItem>
-                    </div>
-                </SidebarFooter>
             </ProSidebar>
         );
     }

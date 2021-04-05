@@ -1,4 +1,4 @@
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarFooter, SidebarContent, SidebarHeader } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarContent, SidebarHeader } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import "../../../../styles/sidebar.css"
 import React, { Component } from 'react';
@@ -39,7 +39,7 @@ class SBUnlog extends Component {
                         </SubMenu>
                         <SubMenu title="Pastes" icon={<Icons.FaRegStickyNote />}>
                             <MenuItem>Public<Link to="/paste/public" /></MenuItem>
-                            <MenuItem>New Paste<Link to="/paste/create" /></MenuItem>
+                            <MenuItem>New Paste<Link to="/paste/new" /></MenuItem>
                         </SubMenu>
                         <SubMenu title="Help" icon={<Icons.FaHeading />}>
                             <MenuItem>Support<Link to="/support" /></MenuItem>
@@ -47,9 +47,6 @@ class SBUnlog extends Component {
                         </SubMenu>
                     </Menu>
                 </SidebarContent>
-                <SidebarFooter>
-                    <MenuItem style={{ textAlign: "center" }}>Copyright (C) Pastebean</MenuItem>
-                </SidebarFooter>
             </ProSidebar>
         );
     }

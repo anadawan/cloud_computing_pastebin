@@ -1,0 +1,6 @@
+{
+    "region": "eu-west-3",
+    "userPool": "eu-west-3_yLIIHoYrK",
+    "identityPool": "eu-west-3:6252d5cc-17e5-44b3-81a9-8ddae445f756",
+    "clientId": "1e0bp02eialugn9qn2q1lqp9cd"
+}
