@@ -7,19 +7,19 @@ import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
 import ReactDOM from 'react-dom';
 
 export default class GetSpecific extends React.Component {
-    constructor(props, user) {
-        super(props, user);
-        this.props = props;
+    constructor(props) {
+        super(props);
+        console.log("getSpecific", this.props)
         this.state = {
             pwd_needed: false,
             pwd: "",
             owned: false,
-            user: ""
+            user: {}
         }
     }
     getToken = () => {
-        //(this?.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]] ?? "pas de token")
-        return (this?.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]] ?? "Anonymous")
+        console.log("props getToken", this.props);
+        return (this.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]]);
     }
     getUsername = () => {
         //console.log(this.props)
@@ -28,7 +28,7 @@ export default class GetSpecific extends React.Component {
     onChange = (e) => {
         this.setState({ pwd: e.target.value });
     }
-    async pasteLoaded(response) {
+    pasteLoaded(response) {
         let user = this.getUsername();
         if (user && user === response?.paste?.username) {
             this.setState({ owned: true });
@@ -48,22 +48,32 @@ export default class GetSpecific extends React.Component {
             //console.log("invalid pwd")
             this.setState({ pwd_needed: true });
         } else {
-            await this.pasteLoaded(response);
+            this.pasteLoaded(response);
         }
     }
-
-    async componentDidMount() {
+    onDeleteClick = async () => {
+        let result = await fetch("https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/delete?hash=" + this.props.match.params.id, { method: "POST", headers: {accesstoken: this.getToken() } })
+        console.log(result);
+        this.props.history.push("/")
+    }
+    onEditClick = () => {
+        this.props.history.push("/paste/edit/" + this.props.match.params.id);
+    }
+    onLoadClick = () => {
         let url = "https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/get";
         url += "?hash=" + this.props.match.params.id;
-        let result = await fetch(url, { method: "POST", headers: { accesstoken: this.getToken() } });
-        let response = await result.json();
-        //console.log(response);
-        if (response["message"] === "Invalid password.") {
-            //console.log("invalid pwd")
-            this.setState({ pwd_needed: true });
-        } else {
-            await this.pasteLoaded(response);
-        }
+        let result = fetch(url, { method: "POST", headers: { accesstoken: this.getToken() } })
+            .then((result) => {
+                result.json().then((response) => {
+                    console.log(response);
+                    if (response["message"] === "Invalid password.") {
+                        //console.log("invalid pwd")
+                        this.setState({ pwd_needed: true });
+                    } else {
+                        this.pasteLoaded(response);
+                    }
+                })
+            })
     }
 
     render() {
@@ -76,9 +86,10 @@ export default class GetSpecific extends React.Component {
                 margin: "0 auto",
                 padding: "40px"
             }}>
+                <Button onClick={this.onLoadClick}>Load paste</Button>
                 <div hidden={!this.state.owned}>
-                    <Button>Edit paste</Button>
-                    <Button>Delete paste</Button>
+                    <Button onClick={this.onEditClick}>Edit paste</Button>
+                    <Button onClick={this.onDeleteClick}>Delete paste</Button>
                 </div>
                 <div hidden={!this.state.pwd_needed}>
                     <TextField type="password"

@@ -8,7 +8,7 @@ export default class PastePassword extends React.Component {
     render() {
         return (
             <div class="form-outline mb-4">
-                <TextField type="password" style={{ width: '60%' }} disabled={!this.props.password} onChange={this.props.passwordChanged}/>
+                <TextField id="paste_password" type="password" style={{ width: '60%' }} disabled={!this.props.password} onChange={this.props.passwordChanged}/>
                 <FormControlLabel
                     control={
                         <Checkbox

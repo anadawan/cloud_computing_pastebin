@@ -60,35 +60,33 @@ const emailConfirm = () => (
 
 const loggedInPage = (user, attributes) => (
     <Router>
-        <SidebarLogged />
         <Switch>
-            <Route exact path="/" render={(props) => <MainPage  {...props} user={user} attributes={attributes} />} />
-            <Route exact path="/profile" render={(props) => <ProfilePage {...props} user={user} attributes={attributes} />} />
-            <Route exact path="/lostpwd" render={(props) => <LostPassword {...props} user={user} attributes={attributes} />} />
-            <Route exact path="/paste/new" render={(props) => <NewPaste {...props} user={user} attributes={attributes} />} />
-            <Route path="/paste/get/:id" render={(props) => <GetPaste {...props} user={user} attributes={attributes} />} />
-            <Route path="/paste/edit/:id" render={(props) => <EditPaste {...props} user={user} attributes={attributes} />} />
-            <Route exact path="/paste/public" render={(props) => <PublicPaste {...props} user={user} attributes={attributes} />} />
-            <Route exact path="/paste/my" render={(props) => <MyPaste {...props} user={user} attributes={attributes} />} />
-            <Route exact path="/support" component={SupportPage} />
-            <Route exact path="/help" component={HelpPage} />
-            <Route component={NotFoundPage} />
+            <Route exact path="/" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><MainPage  {...props} user={user} attributes={attributes} /></div>} />
+            <Route exact path="/profile" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><ProfilePage  {...props} user={user} attributes={attributes} /></div>} />
+            <Route exact path="/lostpwd" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><LostPassword  {...props} user={user} attributes={attributes} /></div>} />
+            <Route exact path="/paste/new" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><NewPaste  {...props} user={user} attributes={attributes} /></div>} />
+            <Route path="/paste/get/:id" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><GetPaste  {...props} user={user} attributes={attributes} /></div>} />
+            <Route path="/paste/edit/:id" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><EditPaste  {...props} user={user} attributes={attributes} /></div>} />
+            <Route exact path="/paste/public" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><PublicPaste  {...props} user={user} attributes={attributes} /></div>} />
+            <Route exact path="/paste/my" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><MyPaste  {...props} user={user} attributes={attributes} /></div>} />
+            <Route exact path="/support" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><SupportPage  {...props} user={user} attributes={attributes} /></div>} />
+            <Route exact path="/help" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><HelpPage  {...props} user={user} attributes={attributes} /></div>} />
+            <Route render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarLogged /><NotFoundPage  {...props} user={user} attributes={attributes} /></div>} />
         </Switch>
     </Router>
 );
 const loggedOutPage = () => (
     <Router>
-        <SidebarUnlogged />
         <Switch>
-            <Route exact path="/" component={MainPage} />
-            <Route exact path="/login" component={loginPage} />
-            <Route exact path="/register" component={RegisterPage} />
-            <Route exact path="/lostpwd" component={LostPassword} />
+            <Route exact path="/" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarUnlogged /><MainPage /></div>} />
+            <Route exact path="/login" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarUnlogged />{loginPage()}</div>} />
+            <Route exact path="/register" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarUnlogged /><RegisterPage /></div>} />
+            <Route exact path="/lostpwd" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarUnlogged /><LostPassword /></div>} />
             <Route path="/paste/get/:id" render={(props) => <GetPaste {...props} />} />
-            <Route exact path="/paste/new" component={NewPaste} />
-            <Route exact path="/paste/public" component={PublicPaste} />
-            <Route exact path="/support" component={SupportPage} />
-            <Route exact path="/help" component={HelpPage} />
+            <Route exact path="/paste/new" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarUnlogged /><NewPaste /></div>} />
+            <Route exact path="/paste/public" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarUnlogged /><PublicPaste /></div>} />
+            <Route exact path="/support" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarUnlogged /><SupportPage /></div>} />
+            <Route exact path="/help" render={(props) => <div style={{ display: "flex", width: "100%" }}><SidebarUnlogged /><HelpPage /></div>} />
             <Route component={NotFoundPage} />
         </Switch>
     </Router>

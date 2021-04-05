@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Divider } from '@material-ui/core';
-
+import SidebarLogged from "./common/sidebar/sidebar_logged/sidebar"
 // Main page 
 class MainPage extends React.Component {
     componentDidMount() {

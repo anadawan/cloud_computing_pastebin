@@ -65,6 +65,11 @@ class NewPastes extends React.Component {
         requestUrl += "lang=" + this.state.language;
         fetch(requestUrl, requestOptions).then((res) => {
             console.log(res);
+            res.json().then((resp) => {
+
+                this.props.history.push("/paste/get/" + resp.hash);
+                console.log();
+            });
         }).catch((err) => {
             console.log(err);
         });

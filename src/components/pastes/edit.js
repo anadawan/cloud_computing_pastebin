@@ -1,4 +1,4 @@
-/*new.js*/
+/*edit.js*/
 
 import dark from 'react-syntax-highlighter/dist/esm/styles/hljs/dark';
 import React from "react";
@@ -14,12 +14,16 @@ import PastePassword from "./components/paste_password";
 import PasteTags from "./components/paste_tags";
 import PastePublic from "./components/paste_public";
 class NewPastes extends React.Component {
-    componentWillMount() {
-        
-    }
     getToken = () => {
         console.log(this?.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]] ?? "pas de token")
         return (this?.props?.user?.storage[Object.keys(this?.props?.user?.storage)[0]] ?? "Anonymous")
+    }
+    async componentDidMount() {
+        /*let url = "https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/get";
+        url += "?hash=" + this.props.match.params.id;
+        let result = await fetch(url, { method: "POST", headers: { accesstoken: this.getToken() } });
+        let response = await result.json();
+        console.log("Response :", response)*/
     }
     constructor(props) {
         super(props);
@@ -36,6 +40,43 @@ class NewPastes extends React.Component {
             tags: ""
         }
     }
+    pasteLoaded = () => {
+
+    }
+    // #region ButtonLoad
+    onLoadClick = () => {
+        let url = "https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/get";
+        url += "?hash=" + this.props.match.params.id;
+        let result = fetch(url, { method: "POST", headers: { accesstoken: this.getToken() } })
+            .then((result) => {
+                result.json().then((response) => {
+                    console.log(response);
+                    if (response["message"] === "Invalid password.") {
+                        this.setState({ pwd_needed: true });
+                    } else {
+                        console.log(response.paste);
+                        this.setState({ title: response.paste.title });
+                        this.setState({ content: response.paste.content });
+                        this.setState({ tags: response.paste.tags });
+                        this.setState({password_text: response.paste.password})
+                        document.getElementById("paste_title").value = response.paste.title;
+                        document.getElementById("paste_code").value = response.paste.content;
+                        console.log(document.getElementById("paste_language"));
+                        if (response.paste.expiration !== "0000-00-00 00:00:00") {
+                            this.setState({ expiration: true })
+                        }
+                        if (response.paste.password !== "") {
+                            this.setState({ password: true })
+                        }
+                        if (response.paste.acl === "public") {
+                            this.setState({ public: true })
+                        }
+                        this.setState({ tags: response.paste.tags })
+                    }
+                })
+            })
+    }
+    // #endregion
     // #region ButtonSubmit
     onButtonClick = (e) => {
         /*
@@ -43,8 +84,7 @@ class NewPastes extends React.Component {
             ?title=t&content=t&expiration=2021-04-15 23:32:28&pass=pass&tags=abc,abc&acl=public 
         */
         console.log(this.state);
-        let requestType = "POST";
-        let requestUrl = "https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/create";
+        let requestUrl = "https://b7yutqw6pf.execute-api.us-east-1.amazonaws.com/api/paste/update";
         let requestOptions = {
             method: 'POST',
             headers: { accesstoken: this.getToken() }
@@ -52,8 +92,10 @@ class NewPastes extends React.Component {
 
         requestUrl += "?";
         requestUrl += "title=" + this.state.title + "&";
-        if (this.state.password)
+        requestUrl += "hash=" + this.props.match.params.id + "&";
+        if (this.state.password) {
             requestUrl += "pass=" + this.state.password_text + "&";
+        }
         else
             requestUrl += "pass=&";
 
@@ -117,7 +159,7 @@ class NewPastes extends React.Component {
     // #endregion  
     // #region Expiration
     toggleExpiration = (e) => { this.setState({ expiration: !this.state.expiration }); }
-    dateChanged = (e) => { this.setState({ expiration_date: e.target.value }); console.log(e.target.value); }
+    dateChanged = (e) => { this.setState({ expiration_date: e.target.value }); }
     timeChanged = (e) => { this.setState({ expiration_time: e.target.value }); }
     // #endregion    
     // #region Password
@@ -144,10 +186,11 @@ class NewPastes extends React.Component {
                 padding: "40px"
             }}>
                 <br />
-                <h3>New Paste 📓</h3>
+                <h3>Edit Paste 📓</h3>
                 <Divider />
                 <br />
                 <form>
+                    <Button onClick={this.onLoadClick}>Load paste</Button>
                     {/* TITLE */}
                     <PasteTitle
                         titleChanged={this.titleChanged}
@@ -179,6 +222,7 @@ class NewPastes extends React.Component {
                     {/* PASTE TAGS */}
                     <PasteTags
                         tagsChanged={this.tagsChanged}
+                        getTags={this.state.tags}
                     />
                     {/* PASTE PUBLIC */}
                     <PastePublic
@@ -190,7 +234,7 @@ class NewPastes extends React.Component {
                     }}
                         onClick={this.onButtonClick}
                     >
-                        Upload paste
+                        Edit paste
                     </Button>
                 </form>
             </div >

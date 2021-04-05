@@ -8,8 +8,8 @@ export default class PasteExpiration extends React.Component {
         return (
             <div class="form-outline mb-4">
                 <label class="form-label">Paste expiration</label><br />
-                <TextField type="date" style={{ width: '30%' }} disabled={!this.props.expiration} onChange={this.props.dateChanged} />
-                <TextField type="time" style={{ width: '30%' }} disabled={!this.props.expiration} onChange={this.props.timeChanged} />
+                <TextField id="paste_edate" type="date" style={{ width: '30%' }} disabled={!this.props.expiration} onChange={this.props.dateChanged} />
+                <TextField id="paste_etime"type="time" style={{ width: '30%' }} disabled={!this.props.expiration} onChange={this.props.timeChanged} />
                 <FormControlLabel
                     control={
                         <Checkbox
