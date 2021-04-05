@@ -1,0 +1,594 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Metadata:
+    Generator: "former2"
+Description: ""
+Resources:
+    IAMUser:
+        Type: "AWS::IAM::User"
+        Properties:
+            Path: "/"
+            UserName: "UserDeploy"
+            Groups: 
+              - !Ref IAMGroup
+
+    IAMGroup:
+        Type: "AWS::IAM::Group"
+        Properties:
+            Path: "/"
+            GroupName: "S3Group"
+            ManagedPolicyArns: 
+              - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+
+    IAMRole:
+        Type: "AWS::IAM::Role"
+        Properties:
+            Path: "/service-role/"
+            RoleName: "AWSCodePipelineServiceRole-eu-west-3-front-to-github"
+            AssumeRolePolicyDocument: "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"codepipeline.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}"
+            MaxSessionDuration: 3600
+            ManagedPolicyArns: 
+              - !Ref IAMManagedPolicy3
+
+    IAMRole2:
+        Type: "AWS::IAM::Role"
+        Properties:
+            Path: "/service-role/"
+            RoleName: "AWSCodePipelineServiceRole-eu-west-3-githubtoaws"
+            AssumeRolePolicyDocument: "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"codepipeline.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}"
+            MaxSessionDuration: 3600
+            ManagedPolicyArns: 
+              - !Ref IAMManagedPolicy
+
+    IAMRole3:
+        Type: "AWS::IAM::Role"
+        Properties:
+            Path: "/"
+            RoleName: !Sub "Cognito_${S3Bucket}Auth_Role"
+            AssumeRolePolicyDocument: "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"cognito-identity.amazonaws.com\"},\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"cognito-identity.amazonaws.com:aud\":\"eu-west-3:6252d5cc-17e5-44b3-81a9-8ddae445f756\"},\"ForAnyValue:StringLike\":{\"cognito-identity.amazonaws.com:amr\":\"authenticated\"}}}]}"
+            MaxSessionDuration: 3600
+
+    IAMRole4:
+        Type: "AWS::IAM::Role"
+        Properties:
+            Path: "/"
+            RoleName: !Sub "Cognito_${S3Bucket}Unauth_Role"
+            AssumeRolePolicyDocument: "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"cognito-identity.amazonaws.com\"},\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"cognito-identity.amazonaws.com:aud\":\"eu-west-3:6252d5cc-17e5-44b3-81a9-8ddae445f756\"},\"ForAnyValue:StringLike\":{\"cognito-identity.amazonaws.com:amr\":\"unauthenticated\"}}}]}"
+            MaxSessionDuration: 3600
+
+    IAMRole5:
+        Type: "AWS::IAM::Role"
+        Properties:
+            Path: "/service-role/"
+            RoleName: "cwe-role-eu-west-3-front-to-github"
+            AssumeRolePolicyDocument: "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"events.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}"
+            MaxSessionDuration: 3600
+            ManagedPolicyArns: 
+              - !Ref IAMManagedPolicy2
+
+    IAMManagedPolicy:
+        Type: "AWS::IAM::ManagedPolicy"
+        Properties:
+            ManagedPolicyName: "AWSCodePipelineServiceRole-eu-west-3-githubtoaws"
+            Path: "/service-role/"
+            PolicyDocument: |
+                {
+                    "Statement": [
+                        {
+                            "Action": [
+                                "iam:PassRole"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow",
+                            "Condition": {
+                                "StringEqualsIfExists": {
+                                    "iam:PassedToService": [
+                                        "cloudformation.amazonaws.com",
+                                        "elasticbeanstalk.amazonaws.com",
+                                        "ec2.amazonaws.com",
+                                        "ecs-tasks.amazonaws.com"
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "Action": [
+                                "codecommit:CancelUploadArchive",
+                                "codecommit:GetBranch",
+                                "codecommit:GetCommit",
+                                "codecommit:GetRepository",
+                                "codecommit:GetUploadArchiveStatus",
+                                "codecommit:UploadArchive"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "codedeploy:CreateDeployment",
+                                "codedeploy:GetApplication",
+                                "codedeploy:GetApplicationRevision",
+                                "codedeploy:GetDeployment",
+                                "codedeploy:GetDeploymentConfig",
+                                "codedeploy:RegisterApplicationRevision"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "codestar-connections:UseConnection"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "elasticbeanstalk:*",
+                                "ec2:*",
+                                "elasticloadbalancing:*",
+                                "autoscaling:*",
+                                "cloudwatch:*",
+                                "s3:*",
+                                "sns:*",
+                                "cloudformation:*",
+                                "rds:*",
+                                "sqs:*",
+                                "ecs:*"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "lambda:InvokeFunction",
+                                "lambda:ListFunctions"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "opsworks:CreateDeployment",
+                                "opsworks:DescribeApps",
+                                "opsworks:DescribeCommands",
+                                "opsworks:DescribeDeployments",
+                                "opsworks:DescribeInstances",
+                                "opsworks:DescribeStacks",
+                                "opsworks:UpdateApp",
+                                "opsworks:UpdateStack"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "cloudformation:CreateStack",
+                                "cloudformation:DeleteStack",
+                                "cloudformation:DescribeStacks",
+                                "cloudformation:UpdateStack",
+                                "cloudformation:CreateChangeSet",
+                                "cloudformation:DeleteChangeSet",
+                                "cloudformation:DescribeChangeSet",
+                                "cloudformation:ExecuteChangeSet",
+                                "cloudformation:SetStackPolicy",
+                                "cloudformation:ValidateTemplate"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "codebuild:BatchGetBuilds",
+                                "codebuild:StartBuild",
+                                "codebuild:BatchGetBuildBatches",
+                                "codebuild:StartBuildBatch"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "devicefarm:ListProjects",
+                                "devicefarm:ListDevicePools",
+                                "devicefarm:GetRun",
+                                "devicefarm:GetUpload",
+                                "devicefarm:CreateUpload",
+                                "devicefarm:ScheduleRun"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "servicecatalog:ListProvisioningArtifacts",
+                                "servicecatalog:CreateProvisioningArtifact",
+                                "servicecatalog:DescribeProvisioningArtifact",
+                                "servicecatalog:DeleteProvisioningArtifact",
+                                "servicecatalog:UpdateProduct"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "cloudformation:ValidateTemplate"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ecr:DescribeImages"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "states:DescribeExecution",
+                                "states:DescribeStateMachine",
+                                "states:StartExecution"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "appconfig:StartDeployment",
+                                "appconfig:StopDeployment",
+                                "appconfig:GetDeployment"
+                            ],
+                            "Resource": "*"
+                        }
+                    ],
+                    "Version": "2012-10-17"
+                }
+
+    IAMManagedPolicy2:
+        Type: "AWS::IAM::ManagedPolicy"
+        Properties:
+            ManagedPolicyName: "start-pipeline-execution-eu-west-3-front-to-github"
+            Path: "/service-role/"
+            PolicyDocument: !Sub |
+                {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "codepipeline:StartPipelineExecution"
+                            ],
+                            "Resource": [
+                                "arn:aws:codepipeline:eu-west-3:${AWS::AccountId}:front-to-github"
+                            ]
+                        }
+                    ]
+                }
+
+    IAMManagedPolicy3:
+        Type: "AWS::IAM::ManagedPolicy"
+        Properties:
+            ManagedPolicyName: "AWSCodePipelineServiceRole-eu-west-3-front-to-github"
+            Path: "/service-role/"
+            PolicyDocument: |
+                {
+                    "Statement": [
+                        {
+                            "Action": [
+                                "iam:PassRole"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow",
+                            "Condition": {
+                                "StringEqualsIfExists": {
+                                    "iam:PassedToService": [
+                                        "cloudformation.amazonaws.com",
+                                        "elasticbeanstalk.amazonaws.com",
+                                        "ec2.amazonaws.com",
+                                        "ecs-tasks.amazonaws.com"
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "Action": [
+                                "codecommit:CancelUploadArchive",
+                                "codecommit:GetBranch",
+                                "codecommit:GetCommit",
+                                "codecommit:GetRepository",
+                                "codecommit:GetUploadArchiveStatus",
+                                "codecommit:UploadArchive"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "codedeploy:CreateDeployment",
+                                "codedeploy:GetApplication",
+                                "codedeploy:GetApplicationRevision",
+                                "codedeploy:GetDeployment",
+                                "codedeploy:GetDeploymentConfig",
+                                "codedeploy:RegisterApplicationRevision"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "codestar-connections:UseConnection"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "elasticbeanstalk:*",
+                                "ec2:*",
+                                "elasticloadbalancing:*",
+                                "autoscaling:*",
+                                "cloudwatch:*",
+                                "s3:*",
+                                "sns:*",
+                                "cloudformation:*",
+                                "rds:*",
+                                "sqs:*",
+                                "ecs:*"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "lambda:InvokeFunction",
+                                "lambda:ListFunctions"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "opsworks:CreateDeployment",
+                                "opsworks:DescribeApps",
+                                "opsworks:DescribeCommands",
+                                "opsworks:DescribeDeployments",
+                                "opsworks:DescribeInstances",
+                                "opsworks:DescribeStacks",
+                                "opsworks:UpdateApp",
+                                "opsworks:UpdateStack"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "cloudformation:CreateStack",
+                                "cloudformation:DeleteStack",
+                                "cloudformation:DescribeStacks",
+                                "cloudformation:UpdateStack",
+                                "cloudformation:CreateChangeSet",
+                                "cloudformation:DeleteChangeSet",
+                                "cloudformation:DescribeChangeSet",
+                                "cloudformation:ExecuteChangeSet",
+                                "cloudformation:SetStackPolicy",
+                                "cloudformation:ValidateTemplate"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Action": [
+                                "codebuild:BatchGetBuilds",
+                                "codebuild:StartBuild",
+                                "codebuild:BatchGetBuildBatches",
+                                "codebuild:StartBuildBatch"
+                            ],
+                            "Resource": "*",
+                            "Effect": "Allow"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "devicefarm:ListProjects",
+                                "devicefarm:ListDevicePools",
+                                "devicefarm:GetRun",
+                                "devicefarm:GetUpload",
+                                "devicefarm:CreateUpload",
+                                "devicefarm:ScheduleRun"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "servicecatalog:ListProvisioningArtifacts",
+                                "servicecatalog:CreateProvisioningArtifact",
+                                "servicecatalog:DescribeProvisioningArtifact",
+                                "servicecatalog:DeleteProvisioningArtifact",
+                                "servicecatalog:UpdateProduct"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "cloudformation:ValidateTemplate"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ecr:DescribeImages"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "states:DescribeExecution",
+                                "states:DescribeStateMachine",
+                                "states:StartExecution"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "appconfig:StartDeployment",
+                                "appconfig:StopDeployment",
+                                "appconfig:GetDeployment"
+                            ],
+                            "Resource": "*"
+                        }
+                    ],
+                    "Version": "2012-10-17"
+                }
+
+    IAMPolicy:
+        Type: "AWS::IAM::Policy"
+        Properties:
+            PolicyDocument: |
+                {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "mobileanalytics:PutEvents",
+                        "cognito-sync:*",
+                        "cognito-identity:*"
+                      ],
+                      "Resource": [
+                        "*"
+                      ]
+                    }
+                  ]
+                }
+            Roles: 
+              - !Ref IAMRole3
+            PolicyName: !Sub "oneClick_${IAMRole3}_1615649336968"
+
+    IAMPolicy2:
+        Type: "AWS::IAM::Policy"
+        Properties:
+            PolicyDocument: |
+                {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "mobileanalytics:PutEvents",
+                        "cognito-sync:*"
+                      ],
+                      "Resource": [
+                        "*"
+                      ]
+                    }
+                  ]
+                }
+            Roles: 
+              - !Ref IAMRole4
+            PolicyName: !Sub "oneClick_${IAMRole4}_1615649336969"
+
+    IAMAccessKey:
+        Type: "AWS::IAM::AccessKey"
+        Properties:
+            Status: "Active"
+            UserName: "UserDeploy"
+
+    IAMAccessKey2:
+        Type: "AWS::IAM::AccessKey"
+        Properties:
+            Status: "Active"
+            UserName: "UserDeploy"
+
+    S3Bucket:
+        Type: "AWS::S3::Bucket"
+        Properties:
+            BucketName: "pastebean"
+            WebsiteConfiguration: 
+                IndexDocument: "index.html"
+                ErrorDocument: "index.html"
+
+    S3BucketPolicy:
+        Type: "AWS::S3::BucketPolicy"
+        Properties:
+            Bucket: !Ref S3Bucket
+            PolicyDocument: 
+                Version: "2012-10-17"
+                Statement: 
+                  - 
+                    Sid: "PublicRead"
+                    Effect: "Allow"
+                    Principal: "*"
+                    Action: 
+                      - "s3:GetObject"
+                      - "s3:GetObjectVersion"
+                    Resource: !Sub "arn:aws:s3:::${S3Bucket}/*"
+
+    S3StorageLens:
+        Type: "AWS::S3::StorageLens"
+        Properties:
+            StorageLensConfiguration: 
+                AccountLevel: 
+                    BucketLevel: {}
+                Id: "default-account-dashboard"
+                IsEnabled: true
+
+    ElastiCacheUser:
+        Type: "AWS::ElastiCache::User"
+        Properties:
+            UserId: "default"
+            UserName: "default"
+            Engine: "redis"
+            AccessString: "on ~* +@all"
+            NoPasswordRequired: true
+
+    AmplifyApp:
+        Type: "AWS::Amplify::App"
+        Properties:
+            Name: "test"
+            Repository: "https://github.com/anadawan/cc-pastebin-front"
+            CustomRules: 
+              - 
+                Source: "/<*>"
+                Target: "/index.html"
+                Status: "404-200"
+            BuildSpec: |
+                version: 1
+                frontend:
+                  phases:
+                    preBuild:
+                        commands:
+                            - yarn install
+                    # IMPORTANT - Please verify your build commands
+                    build:
+                      commands:
+                        - yarn run build
+                  artifacts:
+                    # IMPORTANT - Please verify your build output directory
+                    baseDirectory: build
+                    files:
+                      - '**/*'
+                  cache:
+                    paths:
+                        - node_modules/**/*
+                
+            EnableBranchAutoDeletion: false
+            AccessToken: "REPLACEME"
+            OauthToken: "REPLACEME"
+            CustomHeaders: ""
+
+    AmplifyBranch:
+        Type: "AWS::Amplify::Branch"
+        Properties:
+            BranchName: "main"
+            Stage: "PRODUCTION"
+            AppId: "d12h26my6xz88g"
+            EnablePullRequestPreview: false
+            EnableAutoBuild: true
+            EnablePerformanceMode: false
+
